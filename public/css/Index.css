@@ -1,0 +1,36 @@
+/*----- Estilos Generales para el Contenedor Principal -----*/
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 10%; /* Ajuste para dejar espacio para la barra de navegación fija */
+  max-width: 800px; /* Ajuste para contener dos filas de tres botones con espacios más grandes */
+  margin: 0 auto;
+}
+
+/*----- Estilos para Botones como Categorías -----*/
+.category-button {
+  background-color: #f7f7f7;
+  padding: 20px;
+  margin: 5%; /* Espacios más grandes entre los botones */
+  flex: 1 1 calc(10% - 40px); /* Tres botones por fila, ajustando por los márgenes */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.category-button h2 {
+  margin-top: 0;
+}
+
+.category-button:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

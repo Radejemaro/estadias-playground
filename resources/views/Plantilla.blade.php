@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{-- Datos Generales --}}
+    <meta name="description" content="SEMRC-IT Data Automatization" />
+    <meta name="author" content="Macias Ramirez Ramon de Jesus" />
+
+    {{-- Titulo Editable --}}
+    <title>@yield('Titulo', 'SEMRC-IT Data Automatization')</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('Imagenes/Storage.ico') }}" />
+
+    {{-- Vinculos a estilos y fuentes --}}
+    @yield('Estilo')
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/Plantilla.css">
+
+</head>
+
+<body>
+
+    {{-- Barra de Navegacion --}}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Inventario</a></li>
+                <li><input type="text" placeholder="Buscar"></li>
+                <li>SEMRC-IT Data Automatization</li>
+                <li><a href="/">Log out</a></li>
+                <li><a href="#">User</a></li>
+            </ul>
+        </nav>
+    </header>
+
+@yield('Contenido')
+
+<footer>
+    <p>Copyright &copy; 2024 SEMRC-IT Data Automatization</p>
+</footer>
+
+</body>
+
+</html>

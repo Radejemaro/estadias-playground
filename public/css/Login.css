@@ -1,0 +1,67 @@
+/*----- Estilos Generales -----*/
+body {
+    font-family: "Rethink Sans", sans-serif;
+    color: black;
+    padding: 0;
+    margin: 0;
+    background-color: #eff8fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+/*----- Estilos Login -----*/
+.login-container {
+    border: solid 3px black;
+    padding: 2rem;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+input {
+    width: 75%;
+    padding: 1rem;
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* Estilos para los botones */
+button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+/*------ Footer ------*/
+footer {
+    background-color: #cccccc;
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+}

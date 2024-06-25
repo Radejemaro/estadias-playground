@@ -1,0 +1,35 @@
+@extends('Plantilla')
+
+@section('Titulo', 'Index')
+
+@section('Estilo')
+
+    <link rel="stylesheet" type="text/css" href="css/Index.css">
+
+@endsection
+
+@section('Contenido')
+
+<div class="container">
+  <button class="category-button">
+    <h2>Computers</h2>
+  </button>
+  <button class="category-button" onclick="window.location.href='/">
+    <h2>Tablets</h2>
+  </button>
+  <button class="category-button">
+    <h2>YubiKeys</h2>
+  </button>
+  <button class="category-button">
+    <h2>Switches</h2>
+  </button>
+  <button class="category-button">
+    <h2>Printers</h2>
+  </button>
+  <button class="category-button" onclick="">
+    <h2>Abrhill & TCA Active Users</h2>
+  </button>
+</div>
+
+
+@endsection
