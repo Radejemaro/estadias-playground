@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Jupiter;
 
 class Cat_Controller extends Controller
 {
