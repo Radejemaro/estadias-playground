@@ -16,13 +16,12 @@
 
     {{-- Vinculos a estilos y fuentes --}}
 
-
+    <link rel="stylesheet" type="text/css" href="/css/Plantilla.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/Plantilla.css">
 
-        @yield('Estilo')
+    @yield('Estilo')
 
 </head>
 
@@ -42,11 +41,11 @@
         </nav>
     </header>
 
-@yield('Contenido')
+    @yield('Contenido')
 
-<footer>
-    <p>Copyright &copy; 2024 SEMRC-IT Data Automatization</p>
-</footer>
+    <footer>
+        <p>Copyright &copy; 2024 SEMRC-IT Data Automatization</p>
+    </footer>
 
 </body>
 
