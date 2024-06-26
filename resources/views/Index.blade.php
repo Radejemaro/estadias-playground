@@ -11,7 +11,7 @@
 @section('Contenido')
 
 <div class="container">
-  <button class="category-button" onclick="window.location.href='/Categorias/Computers'">
+  <button class="category-button" onclick="window.location.href='Categorias.Computers'">
     <h2>Computers</h2>
   </button>
   <button class="category-button" onclick="window.location.href='/Categorias/Tablets'">

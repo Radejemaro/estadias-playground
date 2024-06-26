@@ -15,12 +15,14 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('Imagenes/Storage.ico') }}" />
 
     {{-- Vinculos a estilos y fuentes --}}
-    @yield('Estilo')
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/Plantilla.css">
+
+        @yield('Estilo')
 
 </head>
 
