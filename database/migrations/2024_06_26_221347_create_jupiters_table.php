@@ -12,27 +12,28 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jupiters', function (Blueprint $table) {
-            $table->id();
+            $table->ID();
             $table->string('GID');
+            $table->string('ID_JUPITER');
             $table->string('COLEGA');
             $table->string('PUESTO');
             $table->string('DIVISION');
             $table->string('DEPTO');
             $table->string('VIP');
-            $table->string('Email_Hyatt');
-            $table->string('Contraseña');
-            $table->string('PIN_Yubikey');
+            $table->string('EMAIL_HYATT');
+            $table->string('CONTRASENA');
+            $table->string('PIN_YUBIKEY');
             $table->string('SN_YUBIKEY');
-            $table->string('Intune');
+            $table->string('INTUNE');
             $table->string('COMPARTIDA');
             $table->string('NOMBRE_PC');
-            $table->string('No_Serie');
+            $table->string('No.SERIE');
             $table->string('IP');
             $table->string('IP_WIFI');
             $table->string('DOMINIO');
             $table->string('TIPO');
             $table->string('MODELO_PC');
-            $table->string('Vencimiento_Soporte');
+            $table->string('VENCIMIENTO_SOPORTE');
             $table->string('No_OS');
             $table->string('No_PRODUCTO');
             $table->string('BITS');
@@ -46,12 +47,12 @@ return new class extends Migration
             $table->string('No_SERIAL');
             $table->text('OBSERVACIONES');
             $table->string('MAC');
-            $table->string('Switch');
-            $table->string('SwitchPort_Connected');
-            $table->string('Resguardos_Firmados');
-            $table->string('Usb_policy');
-            $table->string('Justification');
-            $table->string('Resguardo');
+            $table->string('SWITCH');
+            $table->string('SWIRCHPORT_CONNECTED');
+            $table->string('RESGUARDOS_FIRMADOS');
+            $table->string('USB_POLICY');
+            $table->string('JUSTIFIACION');
+            $table->string('REGUARDO');
             $table->timestamps();
         });
     }
