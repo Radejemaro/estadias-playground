@@ -27,16 +27,16 @@
 <body>
 
     <div class="login-container">
-        <form>
-            <label for="usuario">Usuario</label>
-            <input type="text" id="usuario" name="usuario" required placeholder="Ejemplo...">
-            <br>
-            <label for="contraseña">Contraseña</label>
-            <input type="password" id="pwd" name="pwd" required placeholder="Contraseña">
-            <br>
-            <a href="/Index"><button>Login</button></a>
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Ejemplo...">
+        <br>
+        <label for="contraseña">Contraseña</label>
+        <input type="password" id="pwd" name="pwd" placeholder="Contraseña">
+        <br>
+        <div class="botones">
+            <a href="/Index" id="btn_login"><button>Login</button></a>
             <a href="/Registro"><button>Registrarse</button></a>
-        </form>
+        </div>
     </div>
 
     <footer>

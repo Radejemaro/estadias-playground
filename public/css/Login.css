@@ -18,6 +18,10 @@ a {
     color: unset;
 }
 
+#btn_login {
+    margin-right: 30px;
+}
+
 /*----- Estilos Login -----*/
 .login-container {
     border: solid 3px black;
@@ -42,7 +46,7 @@ input {
     padding: 1rem;
     border: solid 1px black;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 /* Estilos para los botones */
@@ -54,7 +58,17 @@ button {
     background-color: black;
     color: white;
     cursor: pointer;
+    font-size: 14px;
 }
+
+button:hover,
+button:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em navy; /* Sombras más suaves */
+  transform: translateY(-0.25em); /* Suave elevación al hacer hover o foco */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, text-decoration 0.3s ease;
+}
+
+
 
 /*------ Footer ------*/
 footer {

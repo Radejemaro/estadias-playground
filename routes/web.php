@@ -10,6 +10,6 @@ Route::get('Index', function () {
     return view('Index');
 })->name('Index');
 
-Route::get('Computers', function () {
-    return view('Computers');
+Route::get('/Categorias', function () {
+    return view('app\http\Controllers\CategoriasController@Computers');
 })->name('Computers');

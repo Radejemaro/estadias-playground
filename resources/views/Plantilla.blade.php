@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -30,12 +30,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Inventario</a></li>
+                <li><a href="/Index">Inicio</a></li>
+                <li><a href="/Inventario_Gral">Inventario</a></li>
                 <li><input type="text" placeholder="Buscar"></li>
                 <li>SEMRC-IT Data Automatization</li>
                 <li><a href="/">Log out</a></li>
-                <li><a href="#">User</a></li>
+                <li><a href="/User">User</a></li>
             </ul>
         </nav>
     </header>
