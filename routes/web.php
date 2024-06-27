@@ -10,6 +10,6 @@ Route::get('Index', function () {
     return view('Index');
 })->name('Index');
 
-Route::get('Categorias/Computers', function(){
-    return view('Categorias/Computers');
-})->name ('Computers');
+Route::resource('computers', Cat_Controller::class);
+
+Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('Computers');

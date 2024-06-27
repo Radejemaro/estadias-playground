@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jupiters', function (Blueprint $table) {
-            $table->ID();
+        Schema::create('JUPITER', function (Blueprint $table) {
+            $table->id();
             $table->string('GID');
             $table->string('ID_JUPITER');
             $table->string('COLEGA');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('INTUNE');
             $table->string('COMPARTIDA');
             $table->string('NOMBRE_PC');
-            $table->string('No.SERIE');
+            $table->string('No_SERIE'); // Renombrado para evitar conflicto con el punto
             $table->string('IP');
             $table->string('IP_WIFI');
             $table->string('DOMINIO');
@@ -48,11 +48,11 @@ return new class extends Migration
             $table->text('OBSERVACIONES');
             $table->string('MAC');
             $table->string('SWITCH');
-            $table->string('SWIRCHPORT_CONNECTED');
+            $table->string('SWITCHPORT_CONNECTED'); // Renombrado para corregir error tipográfico
             $table->string('RESGUARDOS_FIRMADOS');
             $table->string('USB_POLICY');
-            $table->string('JUSTIFIACION');
-            $table->string('REGUARDO');
+            $table->string('JUSTIFICACION'); // Renombrado para corregir error tipográfico
+            $table->string('RESGUARDO');
             $table->timestamps();
         });
     }
@@ -62,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jupiters');
+        Schema::dropIfExists('JUPITER');
     }
 };

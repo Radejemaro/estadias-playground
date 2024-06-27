@@ -12,7 +12,9 @@ class Cat_Controller extends Controller
      */
     public function index()
     {
-        //
+        //Variable Global $computers
+        $computers = Jupiter::all();
+        return view('Categorias.Computers', compact('computers'));
     }
 
     /**
@@ -37,6 +39,8 @@ class Cat_Controller extends Controller
     public function show(string $id)
     {
         //
+        $computer = Jupiter::findOrFail($id);
+        return response()->json($computer);
     }
 
     /**
