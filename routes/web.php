@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Cat_Controller;
 
 Route::get('/', function () {
     return view('Loggin');
@@ -10,6 +11,8 @@ Route::get('Index', function () {
     return view('Index');
 })->name('Index');
 
-Route::resource('computers', Cat_Controller::class);
+// Index
+Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');
 
-Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('Computers');
+// Show
+Route::get('Categorias/Computers/{id}', [Cat_Controller::class, 'show'])->name('computers.show');
