@@ -35,8 +35,8 @@
                 <li><a href="/Inventario_Gral">Inventario</a></li>
                 <li><input type="text" placeholder="Buscar"></li>
                 <li>SEMRC-IT Data Automatization</li>
-                <li><a href="/">Log out</a></li>
                 <li><a href="/User">User</a></li>
+                <li><a href="/">Log out</a></li>
             </ul>
         </nav>
     </header>

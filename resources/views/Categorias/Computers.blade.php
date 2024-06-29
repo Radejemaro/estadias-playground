@@ -3,7 +3,9 @@
 @section('Titulo', 'Computers')
 
 @section('Estilo')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/Computers.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="/css/Computers.css">
+
 @endsection
 
 @section('Contenido')
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     rows.forEach(row => {
         row.addEventListener('click', function () {
             const id = this.getAttribute('data-id');
-            fetch(`/computers/${id}`)
+            fetch(`Categorias/Computers/${id}`)
                 .then(response => response.json())
                 .then(data => {
                     const infoDiv = document.getElementById('info');

@@ -4,7 +4,6 @@
 
 @section('Estilo')
 
-    <link rel="stylesheet" type="text/css" href="css/Index.css">
 
 @endsection
 
