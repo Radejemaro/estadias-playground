@@ -13,6 +13,8 @@ Route::get('Index', function () {
 
 // Index
 Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');
+Route::get('Categorias/Tablets', [Cat_Controller::class, 'index'])->name('tablets.index');
 
 // Show
 Route::get('Categorias/Computers/{id}', [Cat_Controller::class, 'show'])->name('computers.show');
+Route::get('Categorias/Tablets/{id}', [Cat_Controller::class, 'show'])->name('tablets.show');

@@ -13,11 +13,11 @@
     <table>
         <thead>
             <tr>
-                <th>Articulo</th>
+                <th>Nombre Dispositivo</th>
                 <th>No.Serie</th>
                 <th>Modelo</th>
                 <th>Tipo</th>
-                <th>Marca</th>
+                <th>Asignado</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
                     <td>{{ $computer->No_SERIE }}</td>
                     <td>{{ $computer->MODELO_PC }}</td>
                     <td>{{ $computer->TIPO }}</td>
-                    <td>{{ $computer->DIVISION }}</td>
+                    <td>{{ $computer->PUESTO }}</td>
                 </tr>
             @endforeach
         </tbody>
