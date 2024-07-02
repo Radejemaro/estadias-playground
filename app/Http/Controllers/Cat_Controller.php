@@ -12,8 +12,12 @@ class Cat_Controller extends Controller
      */
     public function index()
     {
-        //Variable Global $computers
-        $computers = Jupiter::all();
+        // Obtener todos los registros donde GID y NOMBRE_PC no sean null ni vacíos
+        $computers = Jupiter::whereNotNull('GID')
+            ->where('GID', '!=', '')
+            ->whereNotNull('NOMBRE_PC')
+            ->where('NOMBRE_PC', '!=', '')
+            ->get();
         return view('Categorias.Computers', compact('computers'));
     }
 

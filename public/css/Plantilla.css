@@ -115,6 +115,8 @@ tbody td {
 tbody tr:hover {
     background-color: grey;
     cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 /*------ Div de Información ------*/

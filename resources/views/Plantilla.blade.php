@@ -12,7 +12,7 @@
     {{-- Titulo Editable --}}
     <title>@yield('Titulo', 'SEMRC-IT Data Automatization')</title>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('Imagenes/Storage.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/Imagenes/Storage.ico') }}" />
 
     {{-- Vinculos a estilos y fuentes --}}
 
