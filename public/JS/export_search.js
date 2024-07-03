@@ -1,77 +1,96 @@
 export class search {
-    constructor(url, input, tableBody) {
-        this.url = url;
-        this.input = input;
-        this.tableBody = tableBody;
-    }
+  constructor(url, inputField, tableBody) {
+    this.url = url;
+    this.inputField = inputField;
+    this.tableBody = tableBody;
+  }
 
-    InputSearch() {
-        this.input.addEventListener("keyup", () => {
-            let query = this.input.value;
+  initSearch() {
+    this.inputField.addEventListener("keyup", () => {
+      const query = this.inputField.value.trim();
 
-            if (query !== "") {
-                fetch(`${this.url}?valor=${query}`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        this.tableBody.innerHTML = "";
-                        data.result.forEach((item) => {
-                            let tr = document.createElement("tr");
-                            tr.setAttribute("data-id", item.id);
-                            tr.innerHTML = `
-                                <td>${item.NOMBRE_PC}</td>
-                                <td>${item.No_SERIE}</td>
-                                <td>${item.MODELO_PC}</td>
-                                <td>${item.TIPO}</td>
-                                <td>${item.PUESTO}</td>
-                            `;
-                            this.tableBody.appendChild(tr);
+      if (query !== "") {
+        this.fetchAndDisplayResults(query);
+      } else {
+        this.clearTable();
+      }
+    });
+  }
 
-                            tr.addEventListener("click", function () {
-                                const infoRow = this.nextElementSibling;
-                                if (
-                                    infoRow &&
-                                    infoRow.classList.contains("info-row")
-                                ) {
-                                    infoRow.remove();
-                                } else {
-                                    fetch(`/computers/${item.id}`)
-                                        .then((response) => response.json())
-                                        .then((data) => {
-                                            let detailsRow =
-                                                document.createElement("tr");
-                                            detailsRow.classList.add(
-                                                "info-row"
-                                            );
-                                            detailsRow.innerHTML = `
-                                                <td colspan="5">
-                                                    <div><strong>Nombre Dispositivo:</strong> ${data.NOMBRE_PC}</div>
-                                                    <div><strong>No. Serie:</strong> ${data.No_SERIE}</div>
-                                                    <div><strong>Modelo:</strong> ${data.MODELO_PC}</div>
-                                                    <div><strong>Tipo:</strong> ${data.TIPO}</div>
-                                                    <div><strong>Asignado:</strong> ${data.PUESTO}</div>
-                                                </td>
-                                            `;
-                                            this.parentNode.insertBefore(
-                                                detailsRow,
-                                                this.nextSibling
-                                            );
-                                        });
-                                }
-                            });
-                        });
-
-                        if (this.input.key === "Enter") {
-                            const rows = this.tableBody.querySelectorAll("tr");
-                            if (rows.length > 5) {
-                                for (let i = 5; i < rows.length; i++) {
-                                    rows[i].style.display = "none";
-                                }
-                            }
-                        }
-                    });
-            } else {
-                this.tableBody.innerHTML = "";
-            }
+  fetchAndDisplayResults(query) {
+    fetch(`${this.url}?valor=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.clearTable();
+        data.result.forEach((item) => {
+          this.addRowToTable(item);
+          this.addRowClickListener(item);
         });
+
+        if (this.inputField.key === "Enter") {
+          this.limitTableRows();
+        }
+      });
+  }
+
+  addRowToTable(item) {
+    const row = document.createElement("tr");
+    row.setAttribute("data-id", item.id);
+    row.innerHTML = `
+      <td>${item.NOMBRE_PC}</td>
+      <td>${item.No_SERIE}</td>
+      <td>${item.MODELO_PC}</td>
+      <td>${item.TIPO}</td>
+      <td>${item.PUESTO}</td>
+    `;
+    this.tableBody.appendChild(row);
+  }
+
+  addRowClickListener(item) {
+    const row = this.tableBody.querySelector(`tr[data-id="${item.id}"]`);
+    row.addEventListener("click", () => {
+      this.toggleRowDetails(row, item);
+    });
+  }
+
+  toggleRowDetails(row, item) {
+    const detailsRow = row.nextElementSibling;
+    if (detailsRow && detailsRow.classList.contains("info-row")) {
+      detailsRow.remove();
+    } else {
+      this.fetchAndDisplayRowDetails(row, item);
     }
+  }
+
+  fetchAndDisplayRowDetails(row, item) {
+    fetch(`/computers/${item.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const detailsRow = document.createElement("tr");
+        detailsRow.classList.add("info-row");
+        detailsRow.innerHTML = `
+          <td colspan="5">
+            <div><strong>Nombre Dispositivo:</strong> ${data.NOMBRE_PC}</div>
+            <div><strong>No. Serie:</strong> ${data.No_SERIE}</div>
+            <div><strong>Modelo:</strong> ${data.MODELO_PC}</div>
+            <div><strong>Tipo:</strong> ${data.TIPO}</div>
+            <div><strong>Asignado:</strong> ${data.PUESTO}</div>
+          </td>
+        `;
+        row.parentNode.insertBefore(detailsRow, row.nextSibling);
+      });
+  }
+
+  clearTable() {
+    this.tableBody.innerHTML = "";
+  }
+
+  limitTableRows() {
+    const rows = this.tableBody.querySelectorAll("tr");
+    if (rows.length > 5) {
+      for (let i = 5; i < rows.length; i++) {
+        rows[i].style.display = "none";
+      }
+    }
+  }
 }
