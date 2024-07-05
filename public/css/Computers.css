@@ -17,6 +17,16 @@ h2{
     padding-bottom: 2%;
 }
 
+.dropdown-row {
+    background-color: #f9f9f9;
+}
+
+.dropdown-content {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+
 #info {
     margin-top: 20px;
     padding: 10px;

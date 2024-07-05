@@ -29,6 +29,16 @@
                     <td>{{ $computer->TIPO }}</td>
                     <td>{{ $computer->PUESTO }}</td>
                 </tr>
+                <tr class="dropdown-row" style="display: none;">
+                    <td colspan="5">
+                        <div class="dropdown-content">
+                            <p><strong>GID:</strong> {{ $computer->GID }}</p>
+                            <p><strong>ID JUPITER:</strong> {{ $computer->ID_JUPITER }}</p>
+                            <p><strong>DIVISION:</strong> {{ $computer->DIVISION }}</p>
+                            <!-- Agrega más campos aquí -->
+                        </div>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>
