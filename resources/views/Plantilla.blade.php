@@ -35,7 +35,7 @@
     <header>
         <nav class="navbar" style="background-color: #dadde2;">
             <div class="container-fluid">
-                <a class="navbar-brand" style="color: #000000;"><b>SEMRC-IT Data Automatization</b></a>
+                <a class="navbar-brand" style="color: #000000;" href="{{ asset('Index') }}"><b>SEMRC-IT Data Automatization</b></a>
                 <div class="d-flex">
                     <form class="d-flex me-2" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

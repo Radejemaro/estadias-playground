@@ -7,46 +7,42 @@
 @endsection
 
 @section('Contenido')
-<div class="container">
-    <h2><input type="text" id="mysearch" placeholder="Buscar en Computers"></h2>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ asset('JS/show_info.js') }}"></script>
+    <script src="{{ asset('JS/search.js') }}" type="module"></script>
+    <script src="{{ asset('JS/ddl_buttons.js') }}"></script>
 
-    <table id="computers-table">
-        <thead>
-            <tr>
-                <th>Nombre Dispositivo</th>
-                <th>No.Serie</th>
-                <th>Modelo</th>
-                <th>Tipo</th>
-                <th>Asignado</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($computers as $computer)
-                <tr data-id="{{ $computer->id }}">
-                    <td>{{ $computer->NOMBRE_PC }}</td>
-                    <td>{{ $computer->No_SERIE }}</td>
-                    <td>{{ $computer->MODELO_PC }}</td>
-                    <td>{{ $computer->TIPO }}</td>
-                    <td>{{ $computer->PUESTO }}</td>
-                </tr>
-                <tr class="dropdown-row" style="display: none;">
-                    <td colspan="5">
-                        <div class="dropdown-content">
-                            <p><strong>GID:</strong> {{ $computer->GID }}</p>
-                            <p><strong>ID JUPITER:</strong> {{ $computer->ID_JUPITER }}</p>
-                            <p><strong>DIVISION:</strong> {{ $computer->DIVISION }}</p>
-                            <!-- Agrega más campos aquí -->
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div id="info-row" style="display: none;">
-        <!-- Detalles adicionales aquí -->
+    <div id="menu_derecho">
+        <ul>
+            <li><a href="#">Eliminar</a></li>
+            <li><a href="#">Editar</a></li>
+        </ul>
     </div>
-</div>
 
-<script src="{{ asset('JS/show_info.js') }}"></script>
-<script src="{{ asset('JS/search.js') }}" type="module"></script>
+    <div class="container">
+        <h2><input type="text" id="mysearch" placeholder="Buscar en Computers"></h2>
+
+        <table id="computers-table">
+            <thead>
+                <tr>
+                    <th>Nombre Dispositivo</th>
+                    <th>No.Serie</th>
+                    <th>Modelo</th>
+                    <th>Tipo</th>
+                    <th>Asignado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($computers as $computer)
+                    <tr data-id="{{ $computer->id }}">
+                        <td>{{ $computer->NOMBRE_PC }}</td>
+                        <td>{{ $computer->No_SERIE }}</td>
+                        <td>{{ $computer->MODELO_PC }}</td>
+                        <td>{{ $computer->TIPO }}</td>
+                        <td>{{ $computer->PUESTO }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
