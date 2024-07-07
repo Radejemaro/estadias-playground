@@ -53,6 +53,11 @@ class Cat_Controller extends Controller
     public function edit(string $id)
     {
         //
+        $computer = Jupiter::find($id);
+        if ($computer) {
+            return view('edit', compact('computer'));
+        }
+        return redirect()->route('computers.index')->with('error', 'Computadora no encontrada');
     }
 
     /**
@@ -60,14 +65,30 @@ class Cat_Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $computer = Jupiter::find($id);
+        if ($computer) {
+            $computer->NOMBRE_PC = $request->NOMBRE_PC;
+            $computer->No_SERIE = $request->No_SERIE;
+            $computer->MODELO_PC = $request->MODELO_PC;
+            $computer->TIPO = $request->TIPO;
+            $computer->PUESTO = $request->PUESTO;
+            $computer->save();
 
+            return response()->json(['status' => 'success']);
+        }
+
+        return response()->json(['status' => 'error'], 404);
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $computer = Jupiter::find($id);
+        if ($computer) {
+            $computer->delete();
+            return response()->json(['status' => 'success']);
+        }
+        return response()->json(['status' => 'error'], 404);
     }
 }

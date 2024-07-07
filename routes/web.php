@@ -15,7 +15,6 @@ Route::get('Index', function () {
 //Index
 Route::get('/computers/search', [SearchController::class, 'show']);
 
-
 // Index
 Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');
 Route::get('Categorias/Tablets', [Cat_Controller::class, 'index'])->name('tablets.index');
@@ -23,3 +22,8 @@ Route::get('Categorias/Tablets', [Cat_Controller::class, 'index'])->name('tablet
 // Show
 Route::get('Categorias/Computers/{id}', [Cat_Controller::class, 'show'])->name('computers.show');
 Route::get('Categorias/Tablets/{id}', [Cat_Controller::class, 'show'])->name('tablets.show');
+
+// Edit and Delete
+Route::delete('/computers/delete/{id}', [Cat_Controller::class, 'destroy'])->name('computers.destroy');
+Route::get('/computers/edit/{id}', [Cat_Controller::class, 'edit'])->name('computers.edit');
+Route::post('/computers/update/{id}', [Cat_Controller::class, 'update'])->name('computers.update');
