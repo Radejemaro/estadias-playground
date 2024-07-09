@@ -7,18 +7,73 @@ use App\Models\Jupiter;
 
 class Cat_Controller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $route;
+
+    public function __construct(Request $request)
+    {
+        $this->route = $request->route()->getName();
+    }
+
+
     public function index()
     {
-        // Obtener todos los registros donde GID y NOMBRE_PC no sean null ni vacíos
-        $computers = Jupiter::whereNotNull('GID')
-            ->where('GID', '!=', '')
-            ->whereNotNull('NOMBRE_PC')
-            ->where('NOMBRE_PC', '!=', '')
-            ->get();
-        return view('Categorias.Computers', compact('computers'));
+        switch($this->route) {
+            case 'computers.index':
+                $computers = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('NOMBRE_PC')
+                    ->where('NOMBRE_PC', '!=', '')
+                    ->get();
+                    return view('Categorias.Computers', compact('computers'));
+                    break;
+            case 'tablets.index':
+                $tablets = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('NOMBRE_PC')
+                    ->where('NOMBRE_PC', '!=', '')
+                    ->get();
+                    return view('Categorias.Tablets', compact('tablets'));
+                    break;
+            case 'yubikeys.index':
+                $yubikeys = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('SN_YUBIKEY')
+                    ->where('SN_YUBIKEY', '!=', '')
+                    ->whereNotNull('PIN_YUBIKEY')
+                    ->where('PIN_YUBIKEY', '!=', '')
+                    ->whereNotNull('PUESTO')
+                    ->where('PUESTO', '!=', '')
+                    ->get();
+                    return view('Categorias.YubiKeys', compact('yubikeys'));
+                    break;
+            case 'switches.index':
+                $switches = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('NOMBRE_PC')
+                    ->where('NOMBRE_PC', '!=', '')
+                    ->get();
+                    return view('Categorias.Switches', compact('switches'));
+                    break;
+            case 'printers.index':
+                $printers = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('NOMBRE_PC')
+                    ->where('NOMBRE_PC', '!=', '')
+                    ->get();
+                    return view('Categorias.Printers', compact('printers'));
+                    break;
+            case 'ab&tca_active_users.index':
+                $active_users = Jupiter::whereNotNull('GID')
+                    ->where('GID', '!=', '')
+                    ->whereNotNull('NOMBRE_PC')
+                    ->where('NOMBRE_PC', '!=', '')
+                    ->get();
+                    return view('Categorias.Ab&TCA_Active_Users', compact('active_users'));
+                    break;
+            default:
+                return view('Index');
+
+}
     }
 
     /**

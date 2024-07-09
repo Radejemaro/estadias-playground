@@ -1,0 +1,30 @@
+#menu_derecho {
+    position: fixed;
+    top: 60px; /* Ajusta esta distancia según sea necesario */
+    right: 20px; /* Ajusta esta distancia según sea necesario */
+    z-index: 900; /* Asegura que esté por debajo del z-index del navbar */
+}
+
+#menu_derecho ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#menu_derecho li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#menu_derecho li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+
+.container {
+    margin-top: 100px; /* Ajusta según la altura del navbar */
+    padding: 15px;
+}

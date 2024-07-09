@@ -18,6 +18,10 @@ Route::get('/computers/search', [SearchController::class, 'show']);
 // Index
 Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');
 Route::get('Categorias/Tablets', [Cat_Controller::class, 'index'])->name('tablets.index');
+Route::get('Categorias/YubiKeys', [Cat_Controller::class, 'index'])->name('yubikeys.index');
+Route::get('Categorias/Switches', [Cat_Controller::class, 'index'])->name('switches.index');
+Route::get('Categorias/Printers', [Cat_Controller::class, 'index'])->name('printers.index');
+Route::get('Categorias/Ab&TCA_Active_Users', [Cat_Controller::class, 'index'])->name('ab&tca_active_users.index');
 
 // Show
 Route::get('Categorias/Computers/{id}', [Cat_Controller::class, 'show'])->name('computers.show');
