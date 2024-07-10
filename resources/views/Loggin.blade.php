@@ -28,7 +28,7 @@
 
     <div class="login-container">
         <label for="usuario">Usuario</label>
-        <input type="text" id="usuario" name="usuario" placeholder="Ejemplo...">
+        <input type="text" id="usuario" name="usuario" placeholder="Usuario">
         <br>
         <label for="contraseña">Contraseña</label>
         <input type="password" id="pwd" name="pwd" placeholder="Contraseña">
