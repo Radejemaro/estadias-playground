@@ -18,8 +18,10 @@
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
+            <li id="add"><a href="{{ route('jupiter.create') }}">Agregar</a></li>
         </ul>
     </div>
+
 
     <div id="edit-modal"
         style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">

@@ -18,6 +18,7 @@
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
+            <li id="add"><a href="{{ route('jupiter.create') }}">Agregar</a></li>
         </ul>
     </div>
 

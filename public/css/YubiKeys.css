@@ -78,3 +78,14 @@ div#menu_derecho{
 	-o-transition: all .3s ease;
 	transition: all .3s ease;
 }
+
+ .password-wrapper {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }

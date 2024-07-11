@@ -9,33 +9,39 @@
 @section('Contenido')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="https://kit.fontawesome.com/92b6cbde7e.js" crossorigin="anonymous"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{{ asset('JS/show_info.js') }}"></script>
     <script src="{{ asset('JS/search.js') }}" type="module"></script>
-    <script src="{{ asset('JS/ddl_buttons.js') }}"></script>
+    <script src="{{ asset('JS/ddl_buttons_Yubi.js') }}"></script>
 
     <div id="menu_derecho">
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
+            <li id="add"><a href="{{ route('jupiter.create') }}">Agregar</a></li>
         </ul>
     </div>
 
     <div id="edit-modal"
         style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
-        <h3>Editar Computadora</h3>
+        <h3>Editar YubiKey</h3>
         <form id="edit-form">
-            <label for="edit-COLEGA">Nombre del Colega:</label>
+            <label for="edit-COLEGA">Colega:</label>
             <input type="text" id="edit-COLEGA" name="COLEGA"><br>
 
             <label for="edit-PUESTO">Puesto:</label>
             <input type="text" id="edit-PUESTO" name="PUESTO"><br>
 
-            <label for="edit-SN_YUBIKEYC">Serial:</label>
+            <label for="edit-SN_YUBIKEY">YubiKey:</label>
             <input type="text" id="edit-SN_YUBIKEY" name="SN_YUBIKEY"><br>
 
-            <label for="edit-TIPO">PIN:</label>
-            <input type="password" id="edit-TIPO" name="PIN_YUBIKEY"><br>
+            <label for="edit-PIN_YUBIKEY">Pin YubiKey:</label>
+            <div class="password-wrapper">
+                <input type="password" id="edit-PIN_YUBIKEY" name="PIN_YUBIKEY">
+                <i id="toggle-password" class="fas fa-eye toggle-password"></i>
+            </div><br>
 
             <button type="button" id="save-changes">Guardar Cambios</button>
             <button type="button" onclick="$('#edit-modal').hide();">Cancelar</button>
@@ -56,11 +62,14 @@
             </thead>
             <tbody>
                 @foreach ($yubikeys as $yubikey)
-                    <tr data-id="{{ $yubikeys->id }}">
+                    <tr data-id="{{ $yubikey->id }}">
                         <td>{{ $yubikey->COLEGA }}</td>
                         <td>{{ $yubikey->PUESTO }}</td>
                         <td>{{ $yubikey->SN_YUBIKEY }}</td>
-                        <td type="password">{{ $yubikey->PIN_YUBIKEY }}</td>
+                        <td>{{ $yubikey->PIN_YUBIKEY }}
+                        <div class="password-wrapper">
+                        <i id="toggle-password" class="fas fa-eye toggle-password"></i>
+            </div></td>
                     </tr>
                 @endforeach
             </tbody>

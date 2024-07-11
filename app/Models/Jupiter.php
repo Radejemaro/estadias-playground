@@ -10,7 +10,7 @@ class Jupiter extends Model
     use HasFactory;
 
     protected  $table = 'JUPITER';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
         'GID',
         'ID_JUPITER',
