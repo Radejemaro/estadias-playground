@@ -127,7 +127,7 @@
             let temp_link = document.createElement('a');
 
             // Download csv file
-            temp_link.download = "GfG.csv";
+            temp_link.download = "Consulta.csv";
             let url = window.URL.createObjectURL(CSVFile);
             temp_link.href = url;
 
