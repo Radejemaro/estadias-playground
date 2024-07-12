@@ -8,6 +8,13 @@ use App\Models\Jupiter;
 
 class SearchController extends Controller
 {
+ protected $route;
+
+    public function __construct(Request $request)
+    {
+        $this->route = $request->route()->getName();
+    }
+
     public function show(Request $request)
     {
         $data = trim($request->input('valor', ''));
@@ -35,7 +42,6 @@ class SearchController extends Controller
                 ->where('GID', '!=', '')
                 ->whereNotNull('NOMBRE_PC')
                 ->where('NOMBRE_PC', '!=', '')
-                ->limit(5)
                 ->get();
         }
 

@@ -105,19 +105,20 @@ thead th {
     border: 1px solid black;
 }
 
-tbody td {
+tbody td{
     padding: 10px;
     border: 1px solid black;
     text-align: center;
 }
 
 /*------ Filas ------*/
-tbody tr:hover {
+tbody tr:hover > * {
     background-color: grey;
     cursor: pointer;
     color: #ffffff;
     font-weight: bold;
 }
+
 
 /*------ Div de Información ------*/
 #info {

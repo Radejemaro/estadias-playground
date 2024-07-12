@@ -26,12 +26,15 @@ $(document).ready(function () {
         $("#edit-COLEGA").val(currentRow.find("td:eq(0)").text());
         $("#edit-PUESTO").val(currentRow.find("td:eq(1)").text());
         $("#edit-SN_YUBIKEY").val(currentRow.find("td:eq(2)").text());
-        $("#edit-PIN_YUBIKEY").val(currentRow.find("td:eq(3)").text());
+
+        // Si no hay información en el PIN, deja el campo vacío
+        var pinValue = currentRow.find("td:eq(3) input").val();
+        $("#edit-PIN_YUBIKEY").val(pinValue ? pinValue : '');
     });
 
     // Mostrar/Ocultar contraseña
-    $(document).on('click', '#toggle-password', function () {
-        var passwordField = $("#edit-PIN_YUBIKEY");
+    $(document).on('click', '.toggle-password', function () {
+        var passwordField = $(this).siblings('input');
         var type = passwordField.attr("type") === "password" ? "text" : "password";
         passwordField.attr("type", type);
 
@@ -61,7 +64,12 @@ $(document).ready(function () {
                     currentRow.find("td:eq(0)").text(formData.COLEGA);
                     currentRow.find("td:eq(1)").text(formData.PUESTO);
                     currentRow.find("td:eq(2)").text(formData.SN_YUBIKEY);
-                    currentRow.find("td:eq(3)").text(formData.PIN_YUBIKEY);
+                    currentRow.find("td:eq(3)").html(`
+                        <div class="password-wrapper">
+                            <input type="password" value="${formData.PIN_YUBIKEY}" readonly>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                    `);
 
                     $("#edit-modal").hide(); // Ocultamos el modal de edición
                 } else {

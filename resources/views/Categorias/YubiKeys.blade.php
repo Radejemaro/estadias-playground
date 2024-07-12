@@ -10,7 +10,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://kit.fontawesome.com/92b6cbde7e.js" crossorigin="anonymous"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{{ asset('JS/show_info.js') }}"></script>
     <script src="{{ asset('JS/search.js') }}" type="module"></script>
@@ -25,7 +24,7 @@
     </div>
 
     <div id="edit-modal"
-        style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
+        style="">
         <h3>Editar YubiKey</h3>
         <form id="edit-form">
             <label for="edit-COLEGA">Colega:</label>
@@ -66,10 +65,10 @@
                         <td>{{ $yubikey->COLEGA }}</td>
                         <td>{{ $yubikey->PUESTO }}</td>
                         <td>{{ $yubikey->SN_YUBIKEY }}</td>
-                        <td>{{ $yubikey->PIN_YUBIKEY }}
-                        <div class="password-wrapper">
-                        <i id="toggle-password" class="fas fa-eye toggle-password"></i>
-            </div></td>
+                        <td id="PinYubikey">
+                            <input type="password" id="PIN" class="password-wrapper" value="{{ $yubikey->PIN_YUBIKEY }}" readonly>
+                                <i class="fas fa-eye toggle-password"></i>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
