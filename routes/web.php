@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cat_Controller;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SearchYubiController;
 
 Route::get('/', function () {
     return view('Loggin');
@@ -14,6 +15,8 @@ Route::get('Index', function () {
 
 // Search
 Route::get('/computers/search', [SearchController::class, 'show']);
+Route::get('/search/yubi', [SearchYubiController::class, 'show'])->name('search.yubi');
+
 
 // Index
 Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jupiter;
 use App\Models\Tablets;
+use App\Models\Switchs;
+use App\Models\Printers;
+use App\Models\TcaActiveUsers;
+use App\Models\User;
 
 class Cat_Controller extends Controller
 {

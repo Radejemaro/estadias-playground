@@ -26,29 +26,16 @@ $(document).ready(function () {
         $("#edit-COLEGA").val(currentRow.find("td:eq(0)").text());
         $("#edit-PUESTO").val(currentRow.find("td:eq(1)").text());
         $("#edit-SN_YUBIKEY").val(currentRow.find("td:eq(2)").text());
-
-        // Si no hay información en el PIN, deja el campo vacío
-        var pinValue = currentRow.find("td:eq(3) input").val();
-        $("#edit-PIN_YUBIKEY").val(pinValue ? pinValue : '');
-    });
-
-    // Mostrar/Ocultar contraseña
-    $(document).on('click', '.toggle-password', function () {
-        var passwordField = $(this).siblings('input');
-        var type = passwordField.attr("type") === "password" ? "text" : "password";
-        passwordField.attr("type", type);
-
-        // Cambiar el ícono
-        $(this).toggleClass("fa-eye fa-eye-slash");
+        $("#edit-PIN_YUBIKEY").val(currentRow.find("td:eq(3)").text());
     });
 
     // Guardar cambios
     $("#save-changes").click(function () {
         var formData = {
-            COLEGA: $("#edit-COLEGA").val(),
-            PUESTO: $("#edit-PUESTO").val(),
-            SN_YUBIKEY: $("#edit-SN_YUBIKEY").val(),
-            PIN_YUBIKEY: $("#edit-PIN_YUBIKEY").val(),
+            NOMBRE_PC: $("#edit-COLEGA").val(),
+            No_SERIE: $("#edit-PUESTO").val(),
+            MODELO_PC: $("#edit-SN_YUBIKEY").val(),
+            TIPO: $("#edit-PIN_YUBIKEY").val(),
         };
 
         $.ajax({
@@ -64,12 +51,7 @@ $(document).ready(function () {
                     currentRow.find("td:eq(0)").text(formData.COLEGA);
                     currentRow.find("td:eq(1)").text(formData.PUESTO);
                     currentRow.find("td:eq(2)").text(formData.SN_YUBIKEY);
-                    currentRow.find("td:eq(3)").html(`
-                        <div class="password-wrapper">
-                            <input type="password" value="${formData.PIN_YUBIKEY}" readonly>
-                            <i class="fas fa-eye toggle-password"></i>
-                        </div>
-                    `);
+                    currentRow.find("td:eq(3)").text(formData.PIN_YUBIKEY);
 
                     $("#edit-modal").hide(); // Ocultamos el modal de edición
                 } else {
@@ -84,7 +66,7 @@ $(document).ready(function () {
         var id = currentRow.data("id");
         if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
             $.ajax({
-                url: `/yubikeys/delete/${id}`,
+                url: `/computers/delete/${id}`,
                 type: "DELETE",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(

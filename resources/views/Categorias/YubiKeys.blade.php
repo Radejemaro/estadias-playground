@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/92b6cbde7e.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{{ asset('JS/show_info.js') }}"></script>
-    <script src="{{ asset('JS/search.js') }}" type="module"></script>
+    <script src="{{ asset('JS/searchYubi.js') }}" type="module"></script>
     <script src="{{ asset('JS/ddl_buttons_Yubi.js') }}"></script>
 
     <div id="menu_derecho">
@@ -23,8 +23,7 @@
         </ul>
     </div>
 
-    <div id="edit-modal"
-        style="">
+    <div id="edit-modal" style="">
         <h3>Editar YubiKey</h3>
         <form id="edit-form">
             <label for="edit-COLEGA">Colega:</label>
@@ -66,12 +65,13 @@
                         <td>{{ $yubikey->PUESTO }}</td>
                         <td>{{ $yubikey->SN_YUBIKEY }}</td>
                         <td id="PinYubikey">
-                            <input type="password" id="PIN" class="password-wrapper" value="{{ $yubikey->PIN_YUBIKEY }}" readonly>
-                                <i class="fas fa-eye toggle-password"></i>
+                            <input type="password" id="PIN" class="password-wrapper"
+                                value="{{ $yubikey->PIN_YUBIKEY }}" readonly>
+                            <i class="fas fa-eye toggle-password"></i>
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
+             </tbody>
         </table><br>
 
         <button type="button" onclick="tableToCSV()">
@@ -142,4 +142,6 @@
             document.body.removeChild(temp_link);
         }
     </script>
+
+
 @endsection
