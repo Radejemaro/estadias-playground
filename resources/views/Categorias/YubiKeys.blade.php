@@ -23,6 +23,30 @@
         </ul>
     </div>
 
+<div id="quick-add-modal">
+    <h3>Agregar Rápidamente YubiKey</h3>
+    <form id="quick-add-form">
+        <label for="add-COLEGA">Colega:</label>
+        <input type="text" id="add-COLEGA" name="COLEGA"><br>
+
+        <label for="add-PUESTO">Puesto:</label>
+        <input type="text" id="add-PUESTO" name="PUESTO"><br>
+
+        <label for="add-SN_YUBIKEY">YubiKey:</label>
+        <input type="text" id="add-SN_YUBIKEY" name="SN_YUBIKEY"><br>
+
+        <label for="add-PIN_YUBIKEY">Pin YubiKey:</label>
+        <div class="password-wrapper">
+            <input type="password" id="add-PIN_YUBIKEY" name="PIN_YUBIKEY">
+            <i class="fas fa-eye toggle-password"></i>
+        </div><br>
+
+        <button type="button" id="add-new">Agregar</button>
+        <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
+    </form>
+</div>
+
+
     <div id="edit-modal" style="">
         <h3>Editar YubiKey</h3>
         <form id="edit-form">

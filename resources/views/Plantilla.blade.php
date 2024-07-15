@@ -24,69 +24,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans" rel="stylesheet">
 
     @yield('Estilo')
-    <style>
-     header nav {
-    display: flex;
-    justify-content: space-between; /* Para distribuir los elementos a los extremos */
-    align-items: center; /* Para alinear verticalmente los elementos */
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
-
-header nav a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-}
-
-header nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.left-links {
-    display: flex; /* Para que los elementos se comporten como una fila */
-}
-
-.left-links a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin-right: 10px;
-}
-
-.right-links {
-    display: flex; /* Para que los elementos se comporten como una fila */
-    align-items: center; /* Para alinear verticalmente los elementos */
-}
-
-.right-links input[type="search"],
-.right-links button {
-    margin-left: 10px;
-    padding: 5px;
-}
-
-.right-links a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin-left: 10px;
-}
-
-</style>
 </head>
 
 <body>
-
-    {{-- Barra de Navegacion, falta agg el inv e inicio --}}
     <header>
     <nav>
     <div class="left-links">
-        <a href="{{ asset('Index') }}">SEMRC-IT Data Automatization</a>
+        <a href="{{ asset('Index') }}"><img src="{{ asset('/Imagenes/LogoColor.png') }}" alt="SEMRC-IT Data Automatization"></a>
         <a href="#">Inventario</a>
     </div>
     <div class="right-links">

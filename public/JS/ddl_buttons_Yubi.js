@@ -2,6 +2,7 @@ $(document).ready(function () {
     // Ocultamos el menú al cargar la página
     $("#menu_derecho").hide();
     $("#edit-modal").hide(); // Ocultamos el modal de edición
+    $("#quick-add-modal").hide(); // Ocultamos el modal de agregar rápidamente
 
     var currentRow;
     var currentRowId;
@@ -26,20 +27,20 @@ $(document).ready(function () {
         $("#edit-COLEGA").val(currentRow.find("td:eq(0)").text());
         $("#edit-PUESTO").val(currentRow.find("td:eq(1)").text());
         $("#edit-SN_YUBIKEY").val(currentRow.find("td:eq(2)").text());
-        $("#edit-PIN_YUBIKEY").val(currentRow.find("td:eq(3)").text());
+        $("#edit-PIN_YUBIKEY").val(currentRow.find("td:eq(3) input").val());
     });
 
     // Guardar cambios
     $("#save-changes").click(function () {
         var formData = {
-            NOMBRE_PC: $("#edit-COLEGA").val(),
-            No_SERIE: $("#edit-PUESTO").val(),
-            MODELO_PC: $("#edit-SN_YUBIKEY").val(),
-            TIPO: $("#edit-PIN_YUBIKEY").val(),
+            COLEGA: $("#edit-COLEGA").val(),
+            PUESTO: $("#edit-PUESTO").val(),
+            SN_YUBIKEY: $("#edit-SN_YUBIKEY").val(),
+            PIN_YUBIKEY: $("#edit-PIN_YUBIKEY").val(),
         };
 
         $.ajax({
-            url: `/yubikeys/update/${currentRowId}`,
+            url: `/yubi/update/${currentRowId}`,
             type: "POST",
             data: formData,
             headers: {
@@ -51,7 +52,7 @@ $(document).ready(function () {
                     currentRow.find("td:eq(0)").text(formData.COLEGA);
                     currentRow.find("td:eq(1)").text(formData.PUESTO);
                     currentRow.find("td:eq(2)").text(formData.SN_YUBIKEY);
-                    currentRow.find("td:eq(3)").text(formData.PIN_YUBIKEY);
+                    currentRow.find("td:eq(3) input").val(formData.PIN_YUBIKEY);
 
                     $("#edit-modal").hide(); // Ocultamos el modal de edición
                 } else {
@@ -66,7 +67,7 @@ $(document).ready(function () {
         var id = currentRow.data("id");
         if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
             $.ajax({
-                url: `/computers/delete/${id}`,
+                url: `/yubi/delete/${id}`,
                 type: "DELETE",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
@@ -84,6 +85,37 @@ $(document).ready(function () {
         }
     });
 
+    // Agregar rápidamente
+    $("#quick-add").click(function () {
+        $("#quick-add-modal").show(); // Mostramos el modal de agregar rápidamente
+    });
+
+    // Agregar nuevo registro rápidamente
+    $("#add-new").click(function () {
+        var formData = {
+            COLEGA: $("#add-COLEGA").val(),
+            PUESTO: $("#add-PUESTO").val(),
+            SN_YUBIKEY: $("#add-SN_YUBIKEY").val(),
+            PIN_YUBIKEY: $("#add-PIN_YUBIKEY").val(),
+        };
+
+        $.ajax({
+            url: '/yubi/add',
+            type: 'POST',
+            data: formData,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (data) {
+                if (data.success) {
+                    location.reload(); // Recargar la página para mostrar los nuevos datos
+                } else {
+                    alert('Error al agregar el registro');
+                }
+            },
+        });
+    });
+
     // Cuando hagamos click, el menú desaparecerá
     $(document).click(function (e) {
         if (e.button == 0) {
@@ -96,6 +128,19 @@ $(document).ready(function () {
         if (e.keyCode == 27) {
             $("#menu_derecho").css("display", "none");
             $("#edit-modal").hide(); // Ocultamos el modal de edición
+            $("#quick-add-modal").hide(); // Ocultamos el modal de agregar rápidamente
+        }
+    });
+
+    // Mostrar y ocultar contraseñas
+    $(document).on('click', '.toggle-password', function () {
+        let input = $(this).siblings('input');
+        if (input.attr('type') === 'password') {
+            input.attr('type', 'text');
+            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            input.attr('type', 'password');
+            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
         }
     });
 });

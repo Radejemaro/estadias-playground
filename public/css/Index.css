@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 10%; /* Ajuste para dejar espacio para la barra de navegación fija */
+  padding-top: 5%; /* Ajuste para dejar espacio para la barra de navegación fija */
   max-width: 800px; /* Ajuste para contener dos filas de tres botones con espacios más grandes */
   margin: 0 auto;
 }

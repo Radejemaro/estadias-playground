@@ -109,3 +109,23 @@ cursor: pointer;
 font-weight: bold;
 letter-spacing: 2px;
 }
+
+.password-wrapper{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+#toggle-password {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+form{
+    padding-left: 5%;
+    padding-right: 10%;
+}
+
+h3{
+text-align: center;
+}
