@@ -7,6 +7,7 @@ use App\Models\Jupiter;
 use App\Models\Tablets;
 use App\Models\Switchs;
 use App\Models\Printers;
+use App\Models\Tablet;
 use App\Models\TcaActiveUsers;
 use App\Models\User;
 
