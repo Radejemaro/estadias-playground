@@ -16,6 +16,10 @@ Route::get('Index', function () {
 // Search
 Route::get('/computers/search', [SearchController::class, 'show']);
 Route::get('/search/yubi', [SearchYubiController::class, 'show'])->name('search.yubi');
+Route::get('/tablets/search', [SearchController::class, 'show']);
+Route::get('/switches/search', [SearchController::class, 'show']);
+Route::get('/printers/search', [SearchController::class, 'show']);
+Route::get('/ab&tca_active_users/search', [SearchController::class, 'show']);
 
 
 // Index
@@ -62,6 +66,7 @@ Route::delete('/ab&tca_active_users/delete/{id}', [Cat_Controller::class, 'destr
 Route::get('/jupiter/create', function(){
     return view('Categorias.Agregar');
 })->name('jupiter.create');
+Route::get('/tablets/create', [Cat_Controller::class, 'create'])->name('tablets.create');
 
 // Store (POST)
 Route::post('/jupiter/store', [Cat_Controller::class, 'store'])->name('jupiter.store');

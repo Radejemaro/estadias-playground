@@ -7,7 +7,6 @@ use App\Models\Jupiter;
 use App\Models\Tablets;
 use App\Models\Switchs;
 use App\Models\Printers;
-use App\Models\Tablet;
 use App\Models\TcaActiveUsers;
 use App\Models\User;
 
@@ -24,22 +23,22 @@ class Cat_Controller extends Controller
     {
         switch ($this->route) {
             case 'computers.index':
-                $computers = Jupiter::whereNotNull('GID')
-                    ->where('GID', '!=', '')
+                $computers = Jupiter::whereNotNull('ID_JUPITER')
+                    ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('NOMBRE_PC')
                     ->where('NOMBRE_PC', '!=', '')
                     ->get();
                 return view('Categorias.Computers', compact('computers'));
             case 'tablets.index':
-                $tablets = Tablets::whereNotNull('GID')
-                    ->where('GID', '!=', '')
-                    ->whereNotNull('NOMBRE_PC')
-                    ->where('NOMBRE_PC', '!=', '')
+                 $tablets = Tablets::whereNotNull('id')
+                    ->where('id', '!=', '')
+                    ->whereNotNull('NO_SERIE')
+                    ->where('NO_SERIE', '!=', '')
                     ->get();
-                return view('Categorias.Tablets', compact('tablets'));
+                        return view('Categorias.Tablets', compact('tablets'));
             case 'yubikeys.index':
-                $yubikeys = Jupiter::whereNotNull('GID')
-                    ->where('GID', '!=', '')
+                $yubikeys = Jupiter::whereNotNull('ID_JUPITER')
+                    ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('SN_YUBIKEY')
                     ->where('SN_YUBIKEY', '!=', '')
                     ->whereNotNull('PUESTO')
@@ -49,22 +48,22 @@ class Cat_Controller extends Controller
                     ->get();
                 return view('Categorias.YubiKeys', compact('yubikeys'));
             case 'switches.index':
-                $switches = Jupiter::whereNotNull('GID')
-                    ->where('GID', '!=', '')
+                     $switches = Jupiter::whereNotNull('ID_JUPITER')
+                    ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('NOMBRE_PC')
                     ->where('NOMBRE_PC', '!=', '')
                     ->get();
-                return view('Categorias.Switches', compact('switches'));
+                     return view('Categorias.Switches', compact('switches'));
             case 'printers.index':
-                $printers = Jupiter::whereNotNull('GID')
-                    ->where('GID', '!=', '')
+                $printers = Jupiter::whereNotNull('ID_JUPITER')
+                    ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('NOMBRE_PC')
                     ->where('NOMBRE_PC', '!=', '')
                     ->get();
                 return view('Categorias.Printers', compact('printers'));
             case 'ab&tca_active_users.index':
-                $active_users = Jupiter::whereNotNull('GID')
-                    ->where('GID', '!=', '')
+                $active_users = Jupiter::whereNotNull('ID_JUPITER')
+                    ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('NOMBRE_PC')
                     ->where('NOMBRE_PC', '!=', '')
                     ->get();
@@ -76,7 +75,22 @@ class Cat_Controller extends Controller
 
     public function create()
     {
-        return view('Categorias.create');
+     switch ($this->route) {
+            case 'computers.create':
+                return view('Categorias.create');
+            case 'tablets.create':
+                return view('Categorias.createTablet');
+            case 'yubikeys.create':
+                return view('Categorias.create');
+            case 'switches.create':
+                return view('Categorias.create');
+            case 'printers.create':
+                return view('Categorias.create');
+            case 'ab&tca_active_users.create':
+                return view('Categorias.create');
+            default:
+                return view('Index');
+        }
     }
 
     public function store(Request $request)
@@ -146,7 +160,7 @@ class Cat_Controller extends Controller
                 if ($tablet) {
                     return view('edit', compact('tablet'));
                 }
-                return redirect()->route('tablets.index')->with('error', 'Tablet no encontrado');
+                return redirect()->route('tablets.index')->with('error', 'Tablet no encontrada');
             case 'yubikeys.edit':
                 $yubikey = Jupiter::find($id);
                 if ($yubikey) {

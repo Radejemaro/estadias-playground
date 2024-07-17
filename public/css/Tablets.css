@@ -1,15 +1,14 @@
+/*------ Estilos de la Vista de YubiKeys ------*/
 /*------ Contenedor ------*/
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding-top: 2%;
     padding-bottom: 8%;
 }
 
-h2{
+h2 {
     justify-content: center;
     align-items: center;
     width: 30%;
@@ -26,7 +25,6 @@ h2{
     border: 1px solid #ddd;
 }
 
-
 #info {
     margin-top: 20px;
     padding: 10px;
@@ -35,46 +33,98 @@ h2{
     width: 80%;
 }
 
-div#menu_derecho ul{
-	list-style: none;
-	list-style-type: none;
-	list-style-position: outside;
+div#menu_derecho ul {
+    list-style: none;
+    list-style-type: none;
+    list-style-position: outside;
 }
 
-div#menu_derecho li{
-	list-style: none;
-	box-shadow: 0 0 0 0 rgb(0, 97, 136);
+div#menu_derecho li {
+    list-style: none;
+    box-shadow: 0 0 0 0 rgb(0, 97, 136);
 }
 
-div#menu_derecho li a:hover{
-	box-shadow: 250px 0 0 0 #62e0ff inset;
+div#menu_derecho li a:hover {
+    box-shadow: 250px 0 0 0 #62e0ff inset;
 }
 
-div#menu_derecho li a{
-	line-height: 30px;
-	font-size: 16px;
-	cursor:pointer;
-	padding: 10px;
-	color: #FFF;
-	display: block;
-	text-decoration: none;
-	-webkit-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
+div#menu_derecho li a {
+    line-height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-div#menu_derecho li a span{
-	float: right;
-	padding-top: 7px;
+div#menu_derecho li a span {
+    float: right;
+    padding-top: 7px;
 }
 
-div#menu_derecho{
-	width:170px;
-	position:absolute;
-	background: rgb(110, 181, 240);
-	border:1px solid rgb(2, 0, 136);
-	z-index: 999999;
-	-webkit-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
+div#menu_derecho {
+    width: 170px;
+    position: absolute;
+    background: rgb(110, 181, 240);
+    border: 1px solid rgb(2, 0, 136);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#edit-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+    width: 25%;
+    height: 70%;
+    z-index: 1000;
+}
+
+#PinYubikey {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+#PIN {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.password-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toggle-password {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+form {
+    padding-left: 5%;
+    padding-right: 10%;
+}
+
+h3 {
+    text-align: center;
 }
