@@ -28,25 +28,46 @@
 
 <body>
     <header>
-    <nav>
-    <div class="left-links">
-        <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('/Imagenes/Logo.png') }}" alt="SEMRC-IT Data Automatization"></a>
-        <a href="#">Inventario</a>
-    </div>
-    <div class="right-links">
-        <input type="search" placeholder="Search" aria-label="Search" id="GlobalSearch">
-        <button type="submit" id="GlobalSearchButton">Buscar</button>
-        <a href="#">Usuario</a>
-        <a href="{{ asset('/') }}">Salir</a>
-    </div>
-</nav>
+        <nav>
+            <div class="left-links">
+                <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('/Imagenes/Logo.png') }}"
+                        alt="SEMRC-IT Data Automatization"></a>
+                <a href="#">Inventario</a>
+            </div>
+            <div class="right-links">
+                <input type="search" placeholder="Search" aria-label="Search" id="GlobalSearch">
+                <button type="submit" id="GlobalSearchButton">Buscar</button>
+                <a href="#">Usuario</a>
+                <a href="{{ asset('/') }}">Salir</a>
+            </div>
+        </nav>
 
-    @yield('Contenido')
+        @yield('Contenido')
 
-    <footer>
-        <p style="margin-top: 1.5%">Copyright &copy; 2024 SEMRC-IT Data Automatization</p>
-    </footer>
+        <footer>
+            <p style="margin-top: 1.5%">Copyright &copy; 2024 SEMRC-IT Data Automatization</p>
+        </footer>
 
 </body>
+
+<script>
+    $(document).ready(function() {
+        // Evento para cambiar entre mostrar y ocultar la contraseña
+        $(document).on('click', '.toggle-password', function() {
+            let input = $(this).prev('input');
+            if (input.attr('type') === 'password') {
+                input.attr('type', 'text');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                input.attr('type', 'password');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+    });
+</script>
+
+<script>
+
+</script>
 
 </html>

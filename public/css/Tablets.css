@@ -76,32 +76,13 @@ div#menu_derecho {
     transition: all 0.3s ease;
 }
 
-#edit-modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid black;
-    width: 25%;
-    height: 70%;
-    z-index: 1000;
-}
-
-#PinYubikey {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.fas fa-eye toggle-password {
     cursor: pointer;
 }
 
-#PIN {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+#ACOUNT_PASSWORD,
+#PIN_DESBLOQUEO {
+    position: relative;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -110,6 +91,7 @@ div#menu_derecho {
 }
 
 .password-wrapper {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;

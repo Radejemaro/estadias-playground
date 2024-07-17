@@ -11,54 +11,19 @@
 
     <script src="https://kit.fontawesome.com/92b6cbde7e.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="{{ asset('JS/show_info.js') }}"></script>
+    <script src="{{ asset('JS/show_info_Tablet.js') }}"></script>
     <script src="{{ asset('JS/searchTablet.js') }}" type="module"></script>
     <script src="{{ asset('JS/ddl_buttons_Tablet.js') }}"></script>
 
     <div id="menu_derecho">
         <ul>
             <li id="delete"><a>Eliminar</a></li>
-            <li id="edit"><a>Editar</a></li>
+            <li id="edit"><a href="#" id="edit-button">Editar</a></li>
             <li id="add"><a href="{{ route('tablets.create') }}">Agregar</a></li>
         </ul>
     </div>
 
-    <div id="quick-add-modal" style="display: none;">
-        <h3>Agregar Rápidamente Tablet</h3>
-        <form id="quick-add-form">
-            <label for="add-COLEGA">Colega:</label>
-            <input type="text" id="add-COLEGA" name="COLEGA"><br>
-
-            <label for="add-CUENTA">Cuenta:</label>
-            <input type="text" id="add-CUENTA" name="CUENTA"><br>
-
-            <label for="add-ACOUNT_PASSWORD">Account Password:</label>
-            <div class="password-wrapper">
-                <input type="password" id="add-ACOUNT_PASSWORD" name="ACOUNT_PASSWORD">
-                <i class="fas fa-eye toggle-password"></i>
-            </div><br>
-
-            <label for="add-PIN_DESBLOQUEO">PIN Desbloqueo:</label>
-            <div class="password-wrapper">
-                <input type="password" id="add-PIN_DESBLOQUEO" name="PIN_DESBLOQUEO">
-                <i class="fas fa-eye toggle-password"></i>
-            </div><br>
-
-            <label for="add-MARCA">Marca:</label>
-            <input type="text" id="add-MARCA" name="MARCA"><br>
-
-            <label for="add-MODELO">Modelo:</label>
-            <input type="text" id="add-MODELO" name="MODELO"><br>
-
-            <label for="add-AREA">Área:</label>
-            <input type="text" id="add-AREA" name="AREA"><br>
-
-            <button type="button" id="add-new">Agregar</button>
-            <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
-        </form>
-    </div>
-
-    <div id="edit-modal" style="display: none;">
+    <div id="edit-modal" class="modal-scrollable" style="display: none;">
         <h3>Editar Tablet</h3>
         <form id="edit-form">
             <label for="edit-COLEGA">Colega:</label>
@@ -70,13 +35,13 @@
             <label for="edit-ACOUNT_PASSWORD">Account Password:</label>
             <div class="password-wrapper">
                 <input type="password" id="edit-ACOUNT_PASSWORD" name="ACOUNT_PASSWORD">
-                <i id="toggle-password" class="fas fa-eye toggle-password"></i>
+                <i class="fas fa-eye toggle-password"></i>
             </div><br>
 
             <label for="edit-PIN_DESBLOQUEO">PIN Desbloqueo:</label>
             <div class="password-wrapper">
                 <input type="password" id="edit-PIN_DESBLOQUEO" name="PIN_DESBLOQUEO">
-                <i id="toggle-password" class="fas fa-eye toggle-password"></i>
+                <i class="fas fa-eye toggle-password"></i>
             </div><br>
 
             <label for="edit-MARCA">Marca:</label>
@@ -114,26 +79,31 @@
                         <td>{{ $tablet->COLEGA }}</td>
                         <td>{{ $tablet->CUENTA }}</td>
                         <td id="AccountPassword">
-                            <input type="password" id="ACOUNT_PASSWORD" class="password-wrapper"
-                                value="{{ $tablet->ACOUNT_PASSWORD }}" readonly>
-                            <i class="fas fa-eye toggle-password"></i>
+                            <div class="password-wrapper">
+                                <input type="password" id="ACOUNT_PASSWORD" class="password-wrapper"
+                                    value="{{ $tablet->ACOUNT_PASSWORD }}" readonly>
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
                         </td>
                         <td id="PinDesbloqueo">
-                            <input type="password" id="PIN_DESBLOQUEO" class="password-wrapper"
-                                value="{{ $tablet->PIN_DESBLOQUEO }}" readonly>
-                            <i class="fas fa-eye toggle-password"></i>
-                        </td>
-                        <td>{{ $tablet->MARCA }}</td>
-                        <td>{{ $tablet->MODELO }}</td>
-                        <td>{{ $tablet->AREA }}</td>
-                    </tr>
-                @endforeach
-             </tbody>
-        </table><br>
+                            <div class="password-wrapper">
+                                <input type="password" id="PIN_DESBLOQUEO" class="password-wrapper"
+                                    value="{{ $tablet->PIN_DESBLOQUEO }}" readonly>
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
+    </div>
+    </td>
+    <td>{{ $tablet->MARCA }}</td>
+    <td>{{ $tablet->MODELO }}</td>
+    <td>{{ $tablet->AREA }}</td>
+    </tr>
+    @endforeach
+    </tbody>
+    </table><br>
 
-        <button type="button" onclick="tableToCSV()">
-            Exportar como CSV
-        </button><br>
+    <button type="button" onclick="tableToCSV()">
+        Exportar como CSV
+    </button><br>
     </div>
 
     <script>
@@ -153,7 +123,9 @@
         }
 
         function downloadCSVFile(csv_data) {
-            let CSVFile = new Blob([csv_data], { type: "text/csv" });
+            let CSVFile = new Blob([csv_data], {
+                type: "text/csv"
+            });
             let temp_link = document.createElement('a');
             temp_link.download = "Consulta.csv";
             let url = window.URL.createObjectURL(CSVFile);
@@ -163,21 +135,5 @@
             temp_link.click();
             document.body.removeChild(temp_link);
         }
-
-        document.querySelectorAll('.toggle-password').forEach(button => {
-            button.addEventListener('click', function() {
-                const passwordField = this.previousElementSibling;
-                if (passwordField.getAttribute('type') === 'password') {
-                    passwordField.setAttribute('type', 'text');
-                    this.classList.remove('fa-eye');
-                    this.classList.add('fa-eye-slash');
-                } else {
-                    passwordField.setAttribute('type', 'password');
-                    this.classList.remove('fa-eye-slash');
-                    this.classList.add('fa-eye');
-                }
-            });
-        });
     </script>
-
 @endsection

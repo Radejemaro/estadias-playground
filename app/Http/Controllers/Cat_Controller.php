@@ -30,12 +30,12 @@ class Cat_Controller extends Controller
                     ->get();
                 return view('Categorias.Computers', compact('computers'));
             case 'tablets.index':
-                 $tablets = Tablets::whereNotNull('id')
+                $tablets = Tablets::whereNotNull('id')
                     ->where('id', '!=', '')
                     ->whereNotNull('NO_SERIE')
                     ->where('NO_SERIE', '!=', '')
                     ->get();
-                        return view('Categorias.Tablets', compact('tablets'));
+                return view('Categorias.Tablets', compact('tablets'));
             case 'yubikeys.index':
                 $yubikeys = Jupiter::whereNotNull('ID_JUPITER')
                     ->where('ID_JUPITER', '!=', '')
@@ -48,12 +48,12 @@ class Cat_Controller extends Controller
                     ->get();
                 return view('Categorias.YubiKeys', compact('yubikeys'));
             case 'switches.index':
-                     $switches = Jupiter::whereNotNull('ID_JUPITER')
+                $switches = Jupiter::whereNotNull('ID_JUPITER')
                     ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('NOMBRE_PC')
                     ->where('NOMBRE_PC', '!=', '')
                     ->get();
-                     return view('Categorias.Switches', compact('switches'));
+                return view('Categorias.Switches', compact('switches'));
             case 'printers.index':
                 $printers = Jupiter::whereNotNull('ID_JUPITER')
                     ->where('ID_JUPITER', '!=', '')
@@ -75,7 +75,7 @@ class Cat_Controller extends Controller
 
     public function create()
     {
-     switch ($this->route) {
+        switch ($this->route) {
             case 'computers.create':
                 return view('Categorias.create');
             case 'tablets.create':
@@ -96,45 +96,7 @@ class Cat_Controller extends Controller
     public function store(Request $request)
     {
         $jupiter = new Jupiter();
-        $jupiter->GID = $request->input('GID');
-        $jupiter->ID_JUPITER = $request->input('ID_JUPITER');
-        $jupiter->COLEGA = $request->input('COLEGA');
-        $jupiter->PUESTO = $request->input('PUESTO');
-        $jupiter->DIVISION = $request->input('DIVISION');
-        $jupiter->DEPTO = $request->input('DEPTO');
-        $jupiter->VIP = $request->input('VIP');
-        $jupiter->EMAIL_HYATT = $request->input('EMAIL_HYATT');
-        $jupiter->CONTRASENA = $request->input('CONTRASENA');
-        $jupiter->PIN_YUBIKEY = $request->input('PIN_YUBIKEY');
-        $jupiter->SN_YUBIKEY = $request->input('SN_YUBIKEY');
-        $jupiter->INTUNE = $request->input('INTUNE');
-        $jupiter->COMPARTIDA = $request->input('COMPARTIDA');
-        $jupiter->NOMBRE_PC = $request->input('NOMBRE_PC');
-        $jupiter->No_SERIE = $request->input('No_SERIE');
-        $jupiter->IP = $request->input('IP');
-        $jupiter->IP_WIFI = $request->input('IP_WIFI');
-        $jupiter->TIPO = $request->input('TIPO');
-        $jupiter->MODELO_PC = $request->input('MODELO_PC');
-        $jupiter->VENCIMIENTO_SOPORTE = $request->input('VENCIMIENTO_SOPORTE');
-        $jupiter->No_OS = $request->input('No_OS');
-        $jupiter->No_PRODUCTO = $request->input('No_PRODUCTO');
-        $jupiter->BITS = $request->input('BITS');
-        $jupiter->RAM = $request->input('RAM');
-        $jupiter->DISCO_DURO = $request->input('DISCO_DURO');
-        $jupiter->PROCESADOR = $request->input('PROCESADOR');
-        $jupiter->CUENTA_OFFICE_365 = $request->input('CUENTA_OFFICE_365');
-        $jupiter->ANTIVIRUS = $request->input('ANTIVIRUS');
-        $jupiter->MONITOR = $request->input('MONITOR');
-        $jupiter->MODELO = $request->input('MODELO');
-        $jupiter->No_SERIAL = $request->input('No_SERIAL');
-        $jupiter->OBSERVACIONES = $request->input('OBSERVACIONES');
-        $jupiter->MAC = $request->input('MAC');
-        $jupiter->SWITCH = $request->input('SWITCH');
-        $jupiter->SWITCHPORT_CONNECTED = $request->input('SWITCHPORT_CONNECTED');
-        $jupiter->RESGUARDOS_FIRMADOS = $request->input('RESGUARDOS_FIRMADOS');
-        $jupiter->USB_POLICY = $request->input('USB_POLICY');
-        $jupiter->JUSTIFICACION = $request->input('JUSTIFICACION');
-        $jupiter->RESGUARDO = $request->input('RESGUARDO');
+        $jupiter->fill($request->all());
         $jupiter->save();
 
         return response()->json(['status' => 'success']);
@@ -184,13 +146,18 @@ class Cat_Controller extends Controller
                 return response()->json(['status' => 'success']);
             case 'tablets.update':
                 $tablet = Tablets::findOrFail($id);
-                $tablet->NOMBRE_PC = $request->NOMBRE_PC;
-                $tablet->No_SERIE = $request->No_SERIE;
-                $tablet->MODELO_PC = $request->MODELO_PC;
-                $tablet->TIPO = $request->TIPO;
-                $tablet->PUESTO = $request->PUESTO;
-                $tablet->save();
-                return response()->json(['status' => 'success']);
+                $tablet->COLEGA = $request->COLEGA;
+                $tablet->CUENTA = $request->CUENTA;
+                $tablet->ACOUNT_PASSWORD = $request->ACOUNT_PASSWORD;
+                $tablet->PIN_DESBLOQUEO = $request->PIN_DESBLOQUEO;
+                $tablet->MARCA = $request->MARCA;
+                $tablet->MODELO = $request->MODELO;
+                $tablet->AREA = $request->AREA;
+                if ($tablet->save()) {
+                    return response()->json(['status' => 'success']);
+                } else {
+                    return response()->json(['status' => 'error']);
+                }
             case 'yubikeys.update':
                 $yubikey = Jupiter::findOrFail($id);
                 $yubikey->COLEGA = $request->COLEGA;

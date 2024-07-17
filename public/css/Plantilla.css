@@ -245,3 +245,57 @@ form {
     padding-left: 5%;
     padding-right: 10%;
 }
+
+
+#edit-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+    width: 40%; /* Ancho ajustado según tus necesidades */
+    max-width: 600px; /* Ancho máximo para evitar que sea demasiado grande */
+    max-height: 80%; /* Altura máxima del modal */
+    overflow-y: auto; /* Habilitar scroll vertical si el contenido excede la altura */
+    z-index: 1000;
+}
+
+#edit-modal h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+#edit-modal form {
+    padding: 10px;
+}
+
+#edit-modal label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#edit-modal input[type="text"],
+#edit-modal input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#edit-modal button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#edit-modal button:hover {
+    background-color: #0056b3;
+}

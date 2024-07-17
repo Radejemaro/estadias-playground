@@ -81,3 +81,12 @@ $(document).ready(function () {
         });
     });
 });
+
+
+// Mostrar y ocultar contraseñas al hacer clic en el ícono de "ojito"
+$(document).on('click', '.toggle-password', function() {
+    let input = $(this).prev('input');
+    let type = input.attr('type') === 'password' ? 'text' : 'password';
+    input.attr('type', type);
+    $(this).toggleClass('fa-eye fa-eye-slash');
+});
