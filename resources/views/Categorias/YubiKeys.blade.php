@@ -13,7 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{{ asset('JS/show_info.js') }}"></script>
     <script src="{{ asset('JS/searchYubi.js') }}" type="module"></script>
-    <script src="{{ asset('JS/ddl_buttons_Yubi.js') }}"></script>
 
     <div id="menu_derecho">
         <ul>

@@ -12,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{{ asset('JS/show_info.js') }}"></script>
     <script src="{{ asset('JS/searchSwit.js') }}" type="module"></script>
-    <script src="{{ asset('JS/ddl_buttons_Swit.js') }}"></script>
 
     <div id="menu_derecho">
         <ul>

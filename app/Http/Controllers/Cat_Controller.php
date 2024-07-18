@@ -55,10 +55,8 @@ class Cat_Controller extends Controller
                     ->get();
                 return view('Categorias.Switches', compact('switches'));
             case 'printers.index':
-                $printers = Jupiter::whereNotNull('ID_JUPITER')
-                    ->where('ID_JUPITER', '!=', '')
-                    ->whereNotNull('NOMBRE_PC')
-                    ->where('NOMBRE_PC', '!=', '')
+                $printers = Printers::whereNotNull('id')
+                    ->where('id', '!=', '')
                     ->get();
                 return view('Categorias.Printers', compact('printers'));
             case 'ab&tca_active_users.index':
