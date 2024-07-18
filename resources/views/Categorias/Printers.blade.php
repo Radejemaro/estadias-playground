@@ -22,10 +22,9 @@
     </div>
 
     <!-- Quick Add Modal -->
-    <div id="quick-add-modal"
-        style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
-        <h3>Agregar Impresora Rápidamente</h2>
-            <form id="quick-add-form">
+    <div id="quick-add-modal">
+        <h3>Agregar Impresora Rápidamente</h3>
+        <form id="quick-add-form">
             <label for="quick-add-No_SERIE">No. Serie:</label>
             <input type="text" id="quick-add-No_SERIE" name="No_SERIE"><br>
 
@@ -47,15 +46,13 @@
             <label for="quick-add-DEPARTAMENTO">Departamento:</label>
             <input type="text" id="quick-add-DEPARTAMENTO" name="DEPARTAMENTO"><br>
 
-                <button type="submit">Guardar</button>
-                <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
-            </form>
-    </div>
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
+        </form>
     </div>
 
-
-    <div id="edit-modal"
-        style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
+    <!-- Edit Modal -->
+    <div id="edit-modal">
         <h3>Editar Impresora</h3>
         <form id="edit-form">
             <label for="edit-No_SERIE">No. Serie:</label>
@@ -114,60 +111,34 @@
             </tbody>
         </table><br>
 
-        <button type="button" onclick="tableToCSV()">
-            Exportar como CSV
-        </button><br>
+        <button type="button" onclick="tableToCSV()">Exportar como CSV</button><br>
     </div>
 
     {{-- Logica para exportar mi busqueda actual a CSV --}}
     <script type="text/javascript">
         function tableToCSV() {
-            // Variable to store the final csv data
             let csv_data = [];
-
-            // Get each row data
             let rows = document.getElementsByTagName('tr');
             for (let i = 0; i < rows.length; i++) {
-                // Get each column data
                 let cols = rows[i].querySelectorAll('td,th');
-                // Stores each csv row data
                 let csvrow = [];
                 for (let j = 0; j < cols.length; j++) {
-                    // Get the text data of each cell
-                    // of a row and push it to csvrow
                     csvrow.push(cols[j].innerHTML);
                 }
-                // Combine each column value with comma
                 csv_data.push(csvrow.join(","));
             }
-            // Combine each row data with new line character
             csv_data = csv_data.join('\n');
-            // Call this function to download csv file
             downloadCSVFile(csv_data);
         }
 
         function downloadCSVFile(csv_data) {
-            // Create CSV file object and feed
-            // our csv_data into it
-            CSVFile = new Blob([csv_data], {
-                type: "text/csv"
-            });
-
-            // Create to temporary link to initiate
-            // download process
+            let CSVFile = new Blob([csv_data], { type: "text/csv" });
             let temp_link = document.createElement('a');
-
-            // Download csv file
             temp_link.download = "Consulta.csv";
             let url = window.URL.createObjectURL(CSVFile);
             temp_link.href = url;
-
-            // This link should not be displayed
             temp_link.style.display = "none";
             document.body.appendChild(temp_link);
-
-            // Automatically click the link to
-            // trigger download
             temp_link.click();
             document.body.removeChild(temp_link);
         }

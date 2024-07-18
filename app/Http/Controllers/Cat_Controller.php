@@ -94,38 +94,39 @@ class Cat_Controller extends Controller
     }
 
     public function store(Request $request)
-    {   switch ($this->route) {
+    {
+        switch ($this->route) {
             case 'computers.create':
-        $jupiter = new Jupiter();
-        $jupiter->fill($request->all());
-        $jupiter->save();
-        break;
-        case 'tablets.create':
-            $tablet = new Tablets();
-            $tablet->fill($request->all());
-            $tablet->save();
-            break;
-        case 'yubikeys.create':
-            $yubikey = new Jupiter();
-            $yubikey->fill($request->all());
-            $yubikey->save();
-            break;
-        case 'switches.create':
-            $switch = new Jupiter();
-            $switch->fill($request->all());
-            $switch->save();
-            break;
-        case 'ab&tca_active_users.create':
-            $active_user = new Jupiter();
-            $active_user->fill($request->all());
-            $active_user->save();
-            break;
-        case 'printers.create':
-            $printer = new Printers();
-            $printer->fill($request->all());
-            $printer->save();
-            return response()->json(['status' => 'success', 'data' => $printer]);
-            break;
+                $jupiter = new Jupiter();
+                $jupiter->fill($request->all());
+                $jupiter->save();
+                break;
+            case 'tablets.create':
+                $tablet = new Tablets();
+                $tablet->fill($request->all());
+                $tablet->save();
+                break;
+            case 'yubikeys.create':
+                $yubikey = new Jupiter();
+                $yubikey->fill($request->all());
+                $yubikey->save();
+                break;
+            case 'switches.create':
+                $switch = new Jupiter();
+                $switch->fill($request->all());
+                $switch->save();
+                break;
+            case 'ab&tca_active_users.create':
+                $active_user = new Jupiter();
+                $active_user->fill($request->all());
+                $active_user->save();
+                break;
+            case 'printers.create':
+                $printer = new Printers();
+                $printer->fill($request->all());
+                $printer->save();
+                return response()->json(['status' => 'success', 'data' => $printer]);
+                break;
             default:
                 return view('Index');
         }
@@ -159,6 +160,12 @@ class Cat_Controller extends Controller
                     return view('edit', compact('yubikey'));
                 }
                 return redirect()->route('yubikeys.index')->with('error', 'Yubikey no encontrada');
+            case 'printers.edit':
+                $printer = Printers::find($id);
+                if ($printer) {
+                    return view('edit', compact('printer'));
+                }
+                return redirect()->route('printers.index')->with('error', 'Impresora no encontrada');
         }
     }
 
@@ -197,10 +204,10 @@ class Cat_Controller extends Controller
                 $yubikey->save();
                 return response()->json(['status' => 'success']);
             case 'printers.update':
-            $printer = Printers::findOrFail($id);
-            $printer->fill($request->all());
-            $printer->save();
-            return response()->json(['status' => 'success', 'data' => $printer]);
+                $printer = Printers::findOrFail($id);
+                $printer->fill($request->all());
+                $printer->save();
+                return response()->json(['status' => 'success', 'data' => $printer]);
         }
         return response()->json(['status' => 'error'], 404);
     }
@@ -241,18 +248,19 @@ class Cat_Controller extends Controller
 
     public function searchPrinter(Request $request)
     {
-        $valor = $request->input('valor');
-        $results = Printers::where('NOMBRE_IMPRESORA', 'like', '%' . $valor . '%')
-            ->orWhere('No_SERIE', 'like', '%' . $valor . '%')
-            ->orWhere('MODELO_IMPRESORA', 'like', '%' . $valor . '%')
-            ->orWhere('TIPO', 'like', '%' . $valor . '%')
-            ->orWhere('UBICACION', 'like', '%' . $valor . '%')
+        $query = $request->input('query');
+        $printers = Printers::where('NOMBRE_IMPRESORA', 'LIKE', "%{$query}%")
+            ->orWhere('No_SERIE', 'LIKE', "%{$query}%")
+            ->orWhere('MODELO_IMPRESORA', 'LIKE', "%{$query}%")
+            ->orWhere('TIPO', 'LIKE', "%{$query}%")
+            ->orWhere('UBICACION', 'LIKE', "%{$query}%")
             ->get();
 
-        if ($results->isEmpty()) {
+        if ($printers->isEmpty()) {
             return response()->json(['estado' => 1, 'mensaje' => 'No se encontraron resultados.']);
         } else {
-            return response()->json($results);
+            return response()->json($printers);
         }
     }
 }
+?>
