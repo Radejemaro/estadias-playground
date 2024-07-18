@@ -17,9 +17,42 @@
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
-            <li id="add"><a href="{{ route('jupiter.create') }}">Agregar</a></li>
+            <li id="quick-add-button"><a>Fast add</a></li>
         </ul>
     </div>
+
+    <!-- Quick Add Modal -->
+    <div id="quick-add-modal"
+        style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
+        <h3>Agregar Impresora Rápidamente</h2>
+            <form id="quick-add-form">
+            <label for="quick-add-No_SERIE">No. Serie:</label>
+            <input type="text" id="quick-add-No_SERIE" name="No_SERIE"><br>
+
+            <label for="quick-add-IP_USB">IP/USB:</label>
+            <input type="text" id="quick-add-IP_USB" name="IP_USB"><br>
+
+            <label for="quick-add-MAC_ACTIVA">Mac Activa:</label>
+            <input type="text" id="quick-add-MAC_ACTIVA" name="MAC_ACTIVA"><br>
+
+            <label for="quick-add-TIPO">Tipo:</label>
+            <input type="text" id="quick-add-TIPO" name="TIPO"><br>
+
+            <label for="quick-add-MARCA">Marca:</label>
+            <input type="text" id="quick-add-MARCA" name="MARCA"><br>
+
+            <label for="quick-add-UBICACION">Ubicación:</label>
+            <input type="text" id="quick-add-UBICACION" name="UBICACION"><br>
+
+            <label for="quick-add-DEPARTAMENTO">Departamento:</label>
+            <input type="text" id="quick-add-DEPARTAMENTO" name="DEPARTAMENTO"><br>
+
+                <button type="submit">Guardar</button>
+                <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
+            </form>
+    </div>
+    </div>
+
 
     <div id="edit-modal"
         style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black; z-index: 1000;">
@@ -54,7 +87,7 @@
     <div class="container">
         <h2><input type="text" id="mysearch" placeholder="Buscar en Printers"></h2>
 
-        <table id="printers-table">
+        <table id="printer-table">
             <thead>
                 <tr>
                     <th>No Serie</th>
@@ -78,7 +111,7 @@
                         <td>{{ $printer->DEPARTAMENTO }}</td>
                     </tr>
                 @endforeach
-             </tbody>
+            </tbody>
         </table><br>
 
         <button type="button" onclick="tableToCSV()">

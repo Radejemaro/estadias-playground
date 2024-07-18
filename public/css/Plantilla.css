@@ -1,11 +1,12 @@
 /*----- Estilos Generales -----*/
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: "Rethink Sans", sans-serif;
     color: black;
-    background-color: #eff8fb;
+    background-color: whitesmoke;
 }
 
 /* Estructura básica para asegurar que el contenido ocupe toda la pantalla */
@@ -34,7 +35,7 @@ header nav a {
     padding: 14px 20px;
     text-decoration: none;
     letter-spacing: 2px;
-        border: none;
+    border: none;
     border-radius: 5px;
 }
 
@@ -246,7 +247,6 @@ form {
     padding-right: 10%;
 }
 
-
 #edit-modal {
     display: none;
     position: fixed;
@@ -277,8 +277,7 @@ form {
     margin-bottom: 5px;
 }
 
-#edit-modal input[type="text"],
-#edit-modal input[type="password"] {
+#edit-modal input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -297,5 +296,57 @@ form {
 }
 
 #edit-modal button:hover {
+    background-color: #0056b3;
+}
+
+#quick-add-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid black;
+    width: 40%; /* Ancho ajustado según tus necesidades */
+    max-width: 600px; /* Ancho máximo para evitar que sea demasiado grande */
+    max-height: 80%; /* Altura máxima del modal */
+    overflow-y: auto; /* Habilitar scroll vertical si el contenido excede la altura */
+    z-index: 1000;
+}
+
+#quick-add-modal h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+#quick-add-modal form {
+    padding: 10px;
+}
+
+#quick-add-modal label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#quick-add-modal input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#quick-add-modal button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#quick-add-modal button:hover {
     background-color: #0056b3;
 }

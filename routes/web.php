@@ -17,9 +17,9 @@ Route::get('Index', function () {
 // Search
 Route::get('/computers/search', [SearchController::class, 'show']);
 Route::get('/search/yubi', [SearchYubiController::class, 'show'])->name('search.yubi');
-Route::get('search/tablets', [SearchTabletController::class, 'show'])->name('search.tablets');
+Route::get('/search/tablets', [SearchTabletController::class, 'show'])->name('search.tablets');
 Route::get('/switches/search', [SearchController::class, 'show']);
-Route::get('/printers/search', [SearchController::class, 'show']);
+Route::get('/printers/search', [Cat_Controller::class, 'show'])->name('printers.search');
 Route::get('/ab&tca_active_users/search', [SearchController::class, 'show']);
 
 
