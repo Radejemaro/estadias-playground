@@ -5,6 +5,8 @@ use App\Http\Controllers\Cat_Controller;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
 use App\Http\Controllers\SearchTabletController;
+use App\Http\Controllers\SearchPrinterController;
+
 
 Route::get('/', function () {
     return view('Loggin');
@@ -19,8 +21,12 @@ Route::get('/computers/search', [SearchController::class, 'show']);
 Route::get('/search/yubi', [SearchYubiController::class, 'show'])->name('search.yubi');
 Route::get('/search/tablets', [SearchTabletController::class, 'show'])->name('search.tablets');
 Route::get('/switches/search', [SearchController::class, 'show']);
-Route::get('/printers/search', [Cat_Controller::class, 'show'])->name('printers.search');
+Route::get('/search/printers', [SearchPrinterController::class, 'searchPrinters']);
 Route::get('/ab&tca_active_users/search', [SearchController::class, 'show']);
+
+
+Route::get('/cat_controller', [Cat_Controller::class, 'show'])->name('cat_controller.show');
+
 
 
 // Index

@@ -132,7 +132,9 @@
         }
 
         function downloadCSVFile(csv_data) {
-            let CSVFile = new Blob([csv_data], { type: "text/csv" });
+            let CSVFile = new Blob([csv_data], {
+                type: "text/csv"
+            });
             let temp_link = document.createElement('a');
             temp_link.download = "Consulta.csv";
             let url = window.URL.createObjectURL(CSVFile);
@@ -142,5 +144,17 @@
             temp_link.click();
             document.body.removeChild(temp_link);
         }
+
+        $(document).click(function(e) {
+            if (e.button == 0) {
+                $("#menu_derecho").css("display", "none");
+            }
+        });
+
+        $(document).keydown(function(e) {
+            if (e.keyCode == 27) {
+                $("#menu_derecho").css("display", "none");
+            }
+        });
     </script>
 @endsection

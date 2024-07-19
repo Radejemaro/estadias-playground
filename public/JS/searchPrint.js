@@ -24,10 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
                         tableBody.appendChild(tr);
                     });
-                }
-            })
-            .catch(error => console.error("Error:", error));
-    });
 
     $(document).ready(function () {
         $("#menu_derecho").hide();
@@ -142,4 +138,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    });
+
+    });

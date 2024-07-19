@@ -123,9 +123,16 @@ class Cat_Controller extends Controller
                 break;
             case 'printers.create':
                 $printer = new Printers();
-                $printer->fill($request->all());
+                $printer->No_SERIE = $request->No_SERIE;
+                $printer->IP_USB = $request->IP_USB;
+                $printer->MAC_ACTIVA = $request->MAC_ACTIVA;
+                $printer->TIPO = $request->TIPO;
+                $printer->MARCA = $request->MARCA;
+                $printer->UBICACION = $request->UBICACION;
+                $printer->DEPARTAMENTO = $request->DEPARTAMENTO;
                 $printer->save();
-                return response()->json(['status' => 'success', 'data' => $printer]);
+
+                return response()->json(['success' => 'Impresora agregada correctamente']);
                 break;
             default:
                 return view('Index');
@@ -133,10 +140,25 @@ class Cat_Controller extends Controller
         return response()->json(['status' => 'success']);
     }
 
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
         $jupiter = Jupiter::findOrFail($id);
         return response()->json($jupiter);
+        if ($id) {
+        $printer = Printers::find($id);
+        return response()->json($printer);
+    } elseif ($request->has('search_term')) {
+        $searchTerm = $request->input('search_term');
+        $printers = Printers::where('No_SERIE', 'LIKE', "%$searchTerm%")
+            ->orWhere('IP_USB', 'LIKE', "%$searchTerm%")
+            ->orWhere('MAC_ACTIVA', 'LIKE', "%$searchTerm%")
+            ->orWhere('TIPO', 'LIKE', "%$searchTerm%")
+            ->orWhere('MARCA', 'LIKE', "%$searchTerm%")
+            ->orWhere('UBICACION', 'LIKE', "%$searchTerm%")
+            ->orWhere('DEPARTAMENTO', 'LIKE', "%$searchTerm%")
+            ->get();
+        return response()->json($printers);
+    };
     }
 
     public function edit(string $id)
@@ -204,10 +226,17 @@ class Cat_Controller extends Controller
                 $yubikey->save();
                 return response()->json(['status' => 'success']);
             case 'printers.update':
-                $printer = Printers::findOrFail($id);
-                $printer->fill($request->all());
+                $printer = Printers::find($id);
+                $printer->No_SERIE = $request->No_SERIE;
+                $printer->IP_USB = $request->IP_USB;
+                $printer->MAC_ACTIVA = $request->MAC_ACTIVA;
+                $printer->TIPO = $request->TIPO;
+                $printer->MARCA = $request->MARCA;
+                $printer->UBICACION = $request->UBICACION;
+                $printer->DEPARTAMENTO = $request->DEPARTAMENTO;
                 $printer->save();
-                return response()->json(['status' => 'success', 'data' => $printer]);
+
+                return response()->json(['success' => 'Impresora actualizada correctamente']);
         }
         return response()->json(['status' => 'error'], 404);
     }
@@ -246,21 +275,4 @@ class Cat_Controller extends Controller
         }
     }
 
-    public function searchPrinter(Request $request)
-    {
-        $query = $request->input('query');
-        $printers = Printers::where('NOMBRE_IMPRESORA', 'LIKE', "%{$query}%")
-            ->orWhere('No_SERIE', 'LIKE', "%{$query}%")
-            ->orWhere('MODELO_IMPRESORA', 'LIKE', "%{$query}%")
-            ->orWhere('TIPO', 'LIKE', "%{$query}%")
-            ->orWhere('UBICACION', 'LIKE', "%{$query}%")
-            ->get();
-
-        if ($printers->isEmpty()) {
-            return response()->json(['estado' => 1, 'mensaje' => 'No se encontraron resultados.']);
-        } else {
-            return response()->json($printers);
-        }
-    }
 }
-?>
