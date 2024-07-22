@@ -9,6 +9,7 @@ use App\Http\Controllers\SearchPrinterController;
 use App\Http\Controllers\TabletController;
 //Add
 
+
 Route::get('/', function () {
     return view('Loggin');
 })->name('SEMRC-IT Data Automatization');
@@ -43,7 +44,7 @@ Route::get('Categorias/Ab&TCA_Active_Users/{id}', [Cat_Controller::class, 'show'
 
 // Edit
 Route::get('/computers/edit/{id}', [Cat_Controller::class, 'edit'])->name('computers.edit');
-Route::get('/tablets/edit/{id}', [Cat_Controller::class, 'edit'])->name('tablets.edit');
+Route::get('/tablets/{id}/edit', [TabletController::class, 'edit']);
 Route::get('/yubikeys/edit/{id}', [Cat_Controller::class, 'edit'])->name('yubikeys.edit');
 Route::get('/switches/edit/{id}', [Cat_Controller::class, 'edit'])->name('switches.edit');
 Route::get('/printers/edit/{id}', [Cat_Controller::class, 'edit'])->name('printers.edit');
@@ -78,6 +79,7 @@ Route::post('/jupiter/store', [Cat_Controller::class, 'store'])->name('jupiter.s
 
 Route::get('/tablets', [TabletController::class, 'index'])->name('tablets.index');
 Route::post('/tablets/update/{id}', [TabletController::class, 'update']);
+Route::post('/tablets/store', [TabletController::class, 'store'])->name('tablets.store');
 Route::delete('/tablets/{id}', [TabletController::class, 'destroy']);
 Route::get('/search/tablet', [SearchTabletController::class, 'show']);
 Route::get('/tablets/create', [TabletController::class, 'create'])->name('tablets.create');

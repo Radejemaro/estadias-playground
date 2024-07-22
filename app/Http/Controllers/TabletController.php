@@ -39,4 +39,9 @@ class TabletController extends Controller
     {
         // Lógica para crear un nuevo registro
     }
+    public function store(Request $request)
+    {
+        $tablet = Tablets::create($request->all());
+        return response()->json($tablet);
+    }
 }

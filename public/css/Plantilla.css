@@ -255,19 +255,25 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid black;
-    width: 40%; /* Ancho ajustado según tus necesidades */
-    max-width: 600px; /* Ancho máximo para evitar que sea demasiado grande */
-    max-height: 80%; /* Altura máxima del modal */
-    overflow-y: auto; /* Habilitar scroll vertical si el contenido excede la altura */
+    background: #FFFFFF;
+    padding: 30px;
+    border: 1px solid #000000;
+    width: 40%;
+    height: 75%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
     z-index: 1000;
+    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
 }
 
 #edit-modal h3 {
-    text-align: center;
+        text-align: center;
     margin-top: 0;
+    color: #007BFF;
+    font-size: 24px;
 }
 
 #edit-modal form {
@@ -276,25 +282,29 @@ form {
 
 #edit-modal label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    color: #333333;
+    font-size: 16px;
 }
 
 #edit-modal input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 #edit-modal button {
     margin-top: 10px;
     padding: 10px;
     border: none;
-    background-color: #007bff;
-    color: white;
+    background-color: #007BFF;
+    color: #FFFFFF;
     cursor: pointer;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 #edit-modal button:hover {
