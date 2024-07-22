@@ -8,12 +8,6 @@ use App\Models\Jupiter;
 
 class SearchController extends Controller
 {
- protected $route;
-
-    public function __construct(Request $request)
-    {
-        $this->route = $request->route()->getName();
-    }
 
     public function show(Request $request)
     {
@@ -32,6 +26,7 @@ class SearchController extends Controller
                 ->where(function ($query) use ($data) {
                     $query->where('GID', 'like', '%' . $data . '%')
                         ->orWhere('ID_JUPITER', 'like', '%' . $data . '%')
+                        ->orWhere('COLEGA', 'like', '%' . $data . '%')
                         ->orWhere('NOMBRE_PC', 'like', '%' . $data . '%')
                         ->orWhere('No_SERIE', 'like', '%' . $data . '%')
                         ->orWhere('MODELO_PC', 'like', '%' . $data . '%')

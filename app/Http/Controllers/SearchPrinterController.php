@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Printers;
 
 class SearchPrinterController extends Controller
@@ -24,6 +25,9 @@ class SearchPrinterController extends Controller
             return response()->json(['estado' => 0, 'message' => 'No se encontraron resultados']);
         }
 
-        return response()->json(['estado' => 1, 'result' => $printers]);
+        return response()->json([
+        'estado' => 1,
+        'result' => $printers
+        ]);
     }
 }

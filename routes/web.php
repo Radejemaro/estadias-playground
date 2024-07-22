@@ -6,7 +6,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
 use App\Http\Controllers\SearchTabletController;
 use App\Http\Controllers\SearchPrinterController;
-
+use App\Http\Controllers\TabletController;
+//Add
 
 Route::get('/', function () {
     return view('Loggin');
@@ -23,11 +24,6 @@ Route::get('/search/tablets', [SearchTabletController::class, 'show'])->name('se
 Route::get('/switches/search', [SearchController::class, 'show']);
 Route::get('/search/printers', [SearchPrinterController::class, 'searchPrinters']);
 Route::get('/ab&tca_active_users/search', [SearchController::class, 'show']);
-
-
-Route::get('/cat_controller', [Cat_Controller::class, 'show'])->name('cat_controller.show');
-
-
 
 // Index
 Route::get('Categorias/Computers', [Cat_Controller::class, 'index'])->name('computers.index');
@@ -77,3 +73,11 @@ Route::get('/tablets/create', [Cat_Controller::class, 'create'])->name('tablets.
 
 // Store (POST)
 Route::post('/jupiter/store', [Cat_Controller::class, 'store'])->name('jupiter.store');
+
+
+
+Route::get('/tablets', [TabletController::class, 'index'])->name('tablets.index');
+Route::post('/tablets/update/{id}', [TabletController::class, 'update']);
+Route::delete('/tablets/{id}', [TabletController::class, 'destroy']);
+Route::get('/search/tablet', [SearchTabletController::class, 'show']);
+Route::get('/tablets/create', [TabletController::class, 'create'])->name('tablets.create');

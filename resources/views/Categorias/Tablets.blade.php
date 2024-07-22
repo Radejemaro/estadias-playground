@@ -18,40 +18,40 @@
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a href="#" id="edit-button">Editar</a></li>
-            <li id="add"><a href="{{ route('tablets.create') }}">Agregar</a></li>
+            <li id="add"><a href="#" id="add-button">Agregar</a></li>
         </ul>
+    </div>
+
+    <div id="quick-add-modal" class="modal-scrollable" style="display: none;">
+        <h3>Agregar Tablet</h3>
+        <input type="text" id="search-add-fields" placeholder="Buscar en formulario">
+        <form id="add-form">
+            @foreach ([
+                'ID_JUPITER', 'COLEGA', 'CUENTA', 'ACOUNT_PASSWORD', 'PIN_DESBLOQUEO',
+                'ESTATUS', 'MARCA', 'MODELO', 'NO_SERIE', 'MAC', 'AREA', 'COMENTARIOS'
+            ] as $field)
+                <div class="form-group">
+                    <label for="add-{{ $field }}">{{ ucwords(str_replace('_', ' ', strtolower($field))) }}:</label>
+                    <input type="text" id="add-{{ $field }}" name="{{ $field }}">
+                </div>
+            @endforeach
+            <button type="button" id="save-add">Guardar</button>
+            <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
+        </form>
     </div>
 
     <div id="edit-modal" class="modal-scrollable" style="display: none;">
         <h3>Editar Tablet</h3>
         <form id="edit-form">
-            <label for="edit-COLEGA">Colega:</label>
-            <input type="text" id="edit-COLEGA" name="COLEGA"><br>
-
-            <label for="edit-CUENTA">Cuenta:</label>
-            <input type="text" id="edit-CUENTA" name="CUENTA"><br>
-
-            <label for="edit-ACOUNT_PASSWORD">Account Password:</label>
-            <div class="password-wrapper">
-                <input type="password" id="edit-ACOUNT_PASSWORD" name="ACOUNT_PASSWORD">
-                <i class="fas fa-eye toggle-password"></i>
-            </div><br>
-
-            <label for="edit-PIN_DESBLOQUEO">PIN Desbloqueo:</label>
-            <div class="password-wrapper">
-                <input type="password" id="edit-PIN_DESBLOQUEO" name="PIN_DESBLOQUEO">
-                <i class="fas fa-eye toggle-password"></i>
-            </div><br>
-
-            <label for="edit-MARCA">Marca:</label>
-            <input type="text" id="edit-MARCA" name="MARCA"><br>
-
-            <label for="edit-MODELO">Modelo:</label>
-            <input type="text" id="edit-MODELO" name="MODELO"><br>
-
-            <label for="edit-AREA">Área:</label>
-            <input type="text" id="edit-AREA" name="AREA"><br>
-
+            @foreach ([
+                'COLEGA', 'CUENTA', 'ACOUNT_PASSWORD', 'PIN_DESBLOQUEO',
+                'MARCA', 'MODELO', 'AREA'
+            ] as $field)
+                <div class="form-group">
+                    <label for="edit-{{ $field }}">{{ ucwords(str_replace('_', ' ', strtolower($field))) }}:</label>
+                    <input type="text" id="edit-{{ $field }}" name="{{ $field }}">
+                </div>
+            @endforeach
             <button type="button" id="save-changes">Guardar Cambios</button>
             <button type="button" onclick="$('#edit-modal').hide();">Cancelar</button>
         </form>
@@ -79,30 +79,27 @@
                         <td>{{ $tablet->CUENTA }}</td>
                         <td id="AccountPassword">
                             <div class="password-wrapper">
-                                <input type="password" id="ACOUNT_PASSWORD" class="password-wrapper"
-                                    value="{{ $tablet->ACOUNT_PASSWORD }}" readonly>
+                                <input type="password" id="ACOUNT_PASSWORD" class="password-wrapper" value="{{ $tablet->ACOUNT_PASSWORD }}" readonly>
                                 <i class="fas fa-eye toggle-password"></i>
                             </div>
                         </td>
                         <td id="PinDesbloqueo">
                             <div class="password-wrapper">
-                                <input type="password" id="PIN_DESBLOQUEO" class="password-wrapper"
-                                    value="{{ $tablet->PIN_DESBLOQUEO }}" readonly>
+                                <input type="password" id="PIN_DESBLOQUEO" class="password-wrapper" value="{{ $tablet->PIN_DESBLOQUEO }}" readonly>
                                 <i class="fas fa-eye toggle-password"></i>
                             </div>
-    </div>
-    </td>
-    <td>{{ $tablet->MARCA }}</td>
-    <td>{{ $tablet->MODELO }}</td>
-    <td>{{ $tablet->AREA }}</td>
-    </tr>
-    @endforeach
-    </tbody>
-    </table><br>
+                        </td>
+                        <td>{{ $tablet->MARCA }}</td>
+                        <td>{{ $tablet->MODELO }}</td>
+                        <td>{{ $tablet->AREA }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table><br>
 
-    <button type="button" onclick="tableToCSV()">
-        Exportar como CSV
-    </button><br>
+        <button type="button" onclick="tableToCSV()">
+            Exportar como CSV
+        </button><br>
     </div>
 
     <script>
@@ -134,5 +131,76 @@
             temp_link.click();
             document.body.removeChild(temp_link);
         }
+
+        $(document).ready(function() {
+            $('#add-button').click(function() {
+                $('#quick-add-modal').show();
+            });
+
+            $('#save-add').click(function() {
+                let formData = $('#add-form').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('tablets.create') }}',
+                    data: formData,
+                    success: function(response) {
+                        alert('Tablet agregada exitosamente');
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        alert('Hubo un error al agregar la tablet');
+                    }
+                });
+            });
+
+            $('#save-changes').click(function() {
+                let id = $('#edit-form').data('id');
+                let formData = $('#edit-form').serialize();
+                $.ajax({
+                    type: 'PUT',
+                    url: `/tablets/${id}`,
+                    data: formData,
+                    success: function(response) {
+                        alert('Cambios guardados exitosamente');
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        alert('Hubo un error al guardar los cambios');
+                    }
+                });
+            });
+
+            $('#search-add-fields').on('input', function() {
+                let value = $(this).val().toLowerCase();
+                $('#add-form .form-group').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+
+            $(document).on('click', '.toggle-password', function() {
+                let input = $(this).siblings('input');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                } else {
+                    input.attr('type', 'password');
+                }
+            });
+
+            $('#tablet-table').on('click', 'tr', function() {
+                let id = $(this).data('id');
+                let row = $(this);
+                $('#edit-form').data('id', id);
+                $('#edit-COLEGA').val(row.find('td').eq(0).text());
+                $('#edit-CUENTA').val(row.find('td').eq(1).text());
+                $('#edit-ACOUNT_PASSWORD').val(row.find('#ACOUNT_PASSWORD input').val());
+                $('#edit-PIN_DESBLOQUEO').val(row.find('#PinDesbloqueo input').val());
+                $('#edit-MARCA').val(row.find('td').eq(4).text());
+                $('#edit-MODELO').val(row.find('td').eq(5).text());
+                $('#edit-AREA').val(row.find('td').eq(6).text());
+                $('#edit-modal').show();
+            });
+        });
     </script>
 @endsection
