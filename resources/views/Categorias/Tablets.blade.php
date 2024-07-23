@@ -25,14 +25,15 @@
     <div id="quick-add-modal" class="modal-scrollable" style="display: none;">
         <h3>Agregar Tablet</h3>
         <input type="text" id="search-add-fields" placeholder="Buscar en formulario">
-        <form id="add-form">
+        <form id="add-form" method="POST" action="{{ route('tablets.store') }}">
+            @csrf
             @foreach (['ID_JUPITER', 'COLEGA', 'CUENTA', 'ACOUNT_PASSWORD', 'PIN_DESBLOQUEO', 'ESTATUS', 'MARCA', 'MODELO', 'NO_SERIE', 'MAC', 'AREA', 'COMENTARIOS'] as $field)
                 <div class="form-group">
                     <label for="add-{{ $field }}">{{ ucwords(str_replace('_', ' ', strtolower($field))) }}:</label>
                     <input type="text" id="add-{{ $field }}" name="{{ $field }}">
                 </div>
             @endforeach
-            <button type="button" id="save-add">Guardar</button>
+            <button type="submit" id="save-add">Guardar</button>
             <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
         </form>
     </div>

@@ -41,7 +41,11 @@ class TabletController extends Controller
     }
     public function store(Request $request)
     {
-        $tablet = Tablets::create($request->all());
-        return response()->json($tablet);
+        $request->validate([
+            'NO_SERIE' => 'required'
+        ]);
+
+        Tablets::create($request->all());
+        return redirect()->route('tablets.index');
     }
 }
