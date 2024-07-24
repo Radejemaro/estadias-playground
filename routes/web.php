@@ -33,5 +33,7 @@ Route::resource('Categorias/Switches', Cat_Controller::class, ['names' => 'switc
 Route::resource('Categorias/Printers', Cat_Controller::class, ['names' => 'printers']);
 Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names' => 'ab&tca_active_users']);
 
-// Tablets específico
+// Tablets CRUD
 Route::resource('tablets', TabletController::class);
+
+Router::resource('computers', Cat_Controller::class, ['names' => 'computers']);)
