@@ -36,4 +36,6 @@ Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names
 // Tablets CRUD
 Route::resource('tablets', TabletController::class);
 
-Router::resource('computers', Cat_Controller::class, ['names' => 'computers']);)
+Route::resource('computers', Cat_Controller::class);
+Route::resource('yubikeys', Cat_Controller::class);
+Route::resource('switches', SwitchesController::class);
