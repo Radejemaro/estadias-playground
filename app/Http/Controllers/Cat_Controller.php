@@ -235,44 +235,67 @@ class Cat_Controller extends Controller
                 $printer->UBICACION = $request->UBICACION;
                 $printer->DEPARTAMENTO = $request->DEPARTAMENTO;
                 $printer->save();
-
                 return response()->json(['success' => 'Impresora actualizada correctamente']);
+            case 'switches.update':
+                $switch = Jupiter::findOrFail($id);
+                $switch->ID_JUPITER = $request->ID_JUPITER;
+                $switch->NOMBRE_PC = $request->NOMBRE_PC;
+                $switch->save();
+                return response()->json(['status' => 'success']);
+            case 'ab&tca_active_users.update':
+                $active_user = Jupiter::findOrFail($id);
+                $active_user->ID_JUPITER = $request->ID_JUPITER;
+                $active_user->NOMBRE_PC = $request->NOMBRE_PC;
+                $active_user->save();
+                return response()->json(['status' => 'success']);
         }
-        return response()->json(['status' => 'error'], 404);
     }
 
     public function destroy(string $id)
     {
         switch ($this->route) {
             case 'computers.destroy':
-                $computer = Jupiter::findOrFail($id);
+                $computer = Jupiter::find($id);
                 if ($computer) {
                     $computer->delete();
                     return response()->json(['status' => 'success']);
                 }
-                return response()->json(['status' => 'error'], 404);
+                return response()->json(['status' => 'error']);
             case 'tablets.destroy':
-                $tablet = Tablets::findOrFail($id);
+                $tablet = Tablets::find($id);
                 if ($tablet) {
                     $tablet->delete();
                     return response()->json(['status' => 'success']);
                 }
-                return response()->json(['status' => 'error'], 404);
+                return response()->json(['status' => 'error']);
             case 'yubikeys.destroy':
-                $yubikey = Jupiter::findOrFail($id);
+                $yubikey = Jupiter::find($id);
                 if ($yubikey) {
                     $yubikey->delete();
                     return response()->json(['status' => 'success']);
                 }
-                return response()->json(['status' => 'error'], 404);
+                return response()->json(['status' => 'error']);
             case 'printers.destroy':
-                $printer = Printers::findOrFail($id);
+                $printer = Printers::find($id);
                 if ($printer) {
                     $printer->delete();
                     return response()->json(['status' => 'success']);
                 }
-                return response()->json(['status' => 'error'], 404);
+                return response()->json(['status' => 'error']);
+            case 'switches.destroy':
+                $switch = Jupiter::find($id);
+                if ($switch) {
+                    $switch->delete();
+                    return response()->json(['status' => 'success']);
+                }
+                return response()->json(['status' => 'error']);
+            case 'ab&tca_active_users.destroy':
+                $active_user = Jupiter::find($id);
+                if ($active_user) {
+                    $active_user->delete();
+                    return response()->json(['status' => 'success']);
+                }
+                return response()->json(['status' => 'error']);
         }
     }
-
 }

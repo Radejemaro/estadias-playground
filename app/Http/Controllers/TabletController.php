@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tablets;
+use Illuminate\Http\Request;
 
 class TabletController extends Controller
 {
     public function index()
     {
         $tablets = Tablets::all();
-        return view('tablets', compact('tablets'));
+        return view('Categorias.Tablets', compact('tablets'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'ID_JUPITER' => 'required',
+        ]);
+
+        Tablets::create($request->all());
+        return redirect()->route('tablets.index')->with('success', 'Tablet agregada exitosamente.');
     }
 
     public function edit($id)
@@ -23,29 +33,13 @@ class TabletController extends Controller
     {
         $tablet = Tablets::findOrFail($id);
         $tablet->update($request->all());
-
-        return response()->json(['status' => 'success']);
+        return redirect()->route('tablets.index')->with('success', 'Tablet actualizada exitosamente.');
     }
 
     public function destroy($id)
     {
         $tablet = Tablets::findOrFail($id);
         $tablet->delete();
-
-        return response()->json(['status' => 'success']);
-    }
-
-    public function create()
-    {
-        // Lógica para crear un nuevo registro
-    }
-    public function store(Request $request)
-    {
-        $request->validate([
-            'NO_SERIE' => 'required'
-        ]);
-
-        Tablets::create($request->all());
-        return redirect()->route('tablets.index');
+        return redirect()->route('tablets.index')->with('success', 'Tablet eliminada exitosamente.');
     }
 }

@@ -6,7 +6,7 @@ body {
     padding: 0;
     font-family: "Rethink Sans", sans-serif;
     color: black;
-    background-color: whitesmoke;
+    background-color: #e4e7ff;
 }
 
 /* Estructura básica para asegurar que el contenido ocupe toda la pantalla */
@@ -21,7 +21,7 @@ header nav {
     justify-content: space-between; /* Para distribuir los elementos a los extremos */
     align-items: center;
     text-align: center; /* Para alinear verticalmente los elementos */
-    background-color: darkgray;
+    background-color: #007BFF;
     color: white;
     padding: 10px;
     height: 50px;
@@ -40,7 +40,7 @@ header nav a {
 }
 
 header nav a:hover {
-    background-color: white;
+    background-color: #e4e7ff;
     color: black;
     letter-spacing: 2px;
     transition: 0.7s;
@@ -141,7 +141,7 @@ table {
 
 thead th {
     font-weight: bold;
-    background-color: #cccccc;
+    background-color: #007bff;
     padding: 10px;
     border: 1px solid black;
 }
@@ -154,7 +154,8 @@ tbody td {
 
 /*------ Filas ------*/
 tbody tr:hover > * {
-    background-color: grey;
+
+    background-color: #89a4ff;
     cursor: pointer;
     color: #ffffff;
     font-weight: bold;
@@ -311,7 +312,7 @@ form {
     background-color: #0056b3;
 }
 
-#quick-add-modal {
+#form-modal {
     display: none;
     position: fixed;
     top: 50%;
@@ -331,25 +332,25 @@ form {
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
 }
 
-#quick-add-modal h3 {
+#form-modal h3 {
     text-align: center;
     margin-top: 0;
     color: #007BFF;
     font-size: 24px;
 }
 
-#quick-add-modal form {
+#form-modal form {
     padding: 10px;
 }
 
-#quick-add-modal label {
+#form-modal label {
     display: block;
     margin-bottom: 10px;
     color: #333333;
     font-size: 16px;
 }
 
-#quick-add-modal input {
+#form-modal input {
     width: 90%;
     padding: 8px;
     margin-bottom: 10px;
@@ -358,7 +359,7 @@ form {
     font-size: 14px;
 }
 
-#quick-add-modal button {
+#form-modal button {
     margin-top: 10px;
     padding: 10px;
     border: none;
@@ -369,6 +370,6 @@ form {
     font-size: 16px;
 }
 
-#quick-add-modal button:hover {
+#form-modal button:hover {
     background-color: #0056b3;
 }
