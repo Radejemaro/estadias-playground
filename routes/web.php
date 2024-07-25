@@ -33,7 +33,6 @@ Route::get('/ab&tca_active_users/search', [SearchController::class, 'show']);
 // Categorías
 Route::resource('Categorias/Computers', Cat_Controller::class, ['names' => 'computers']);
 Route::resource('Categorias/Tablets', Cat_Controller::class, ['names' => 'tablets']);
-Route::resource('Categorias/YubiKeys', Cat_Controller::class, ['names' => 'yubikeys']);
 Route::resource('Categorias/Switches', Cat_Controller::class, ['names' => 'switches']);
 Route::resource('Categorias/Printers', Cat_Controller::class, ['names' => 'printers']);
 Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names' => 'ab&tca_active_users']);
@@ -41,4 +40,4 @@ Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names
 // Tablets CRUD
 Route::resource('tablets', TabletController::class);
 Route::resource('computers', Cat_Controller::class);
-Route::resource('yubikeys', YubikeyController::class);
+Route::resource('yubikey', YubikeyController::class, ['names' => 'yubikeys']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jupiter;
 use App\Models\Tablets;
+use App\Models\Yubikeys;
 use App\Models\Switchs;
 use App\Models\Printers;
 use App\Models\TcaActiveUsers;
@@ -37,7 +38,7 @@ class Cat_Controller extends Controller
                     ->get();
                 return view('Categorias.Tablets', compact('tablets'));
             case 'yubikeys.index':
-                $yubikeys = Jupiter::whereNotNull('ID_JUPITER')
+                $yubikeys = Yubikeys::whereNotNull('ID_JUPITER')
                     ->where('ID_JUPITER', '!=', '')
                     ->whereNotNull('SN_YUBIKEY')
                     ->where('SN_YUBIKEY', '!=', '')

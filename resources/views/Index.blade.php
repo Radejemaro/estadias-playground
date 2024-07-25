@@ -17,7 +17,7 @@
   <button class="category-button" onclick="location.href='Categorias/Tablets'">
     <h2>Tablets</h2>
   </button>
-  <button class="category-button" onclick="location.href='Categorias/YubiKeys'">
+  <button class="category-button" onclick="location.href='{{route('yubikeys.index')}}'">
     <h2>YubiKeys</h2>
   </button>
   <button class="category-button" onclick="location.href='Categorias/Switches'">
