@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Cat_Controller;
+use App\Http\Controllers\TabletController;
+use App\Http\Controllers\YubikeyController;
+use App\Http\Controllers\SwitchesController;
+
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
 use App\Http\Controllers\SearchTabletController;
 use App\Http\Controllers\SearchPrinterController;
-use App\Http\Controllers\TabletController;
+
 
 // Página principal
 Route::get('/', function () {
@@ -35,7 +40,5 @@ Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names
 
 // Tablets CRUD
 Route::resource('tablets', TabletController::class);
-
 Route::resource('computers', Cat_Controller::class);
-Route::resource('yubikeys', Cat_Controller::class);
-Route::resource('switches', SwitchesController::class);
+Route::resource('yubikeys', YubikeyController::class);
