@@ -154,7 +154,7 @@
                                 _token: $('meta[name="csrf-token"]').attr('content')
                             },
                             success: function () {
-                                location.reload();
+                                window.location.reload();
                             }
                         });
                     }

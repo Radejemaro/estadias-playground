@@ -20,7 +20,7 @@ class TabletController extends Controller
         ]);
 
         Tablets::create($request->all());
-        return redirect()->route('tablets.index')->with('success', 'Tablet agregada exitosamente.');
+        return redirect()->route('tablets.index');
     }
 
     public function edit($id)
@@ -33,13 +33,14 @@ class TabletController extends Controller
     {
         $tablet = Tablets::findOrFail($id);
         $tablet->update($request->all());
-        return redirect()->route('tablets.index')->with('success', 'Tablet actualizada exitosamente.');
+        return redirect()->route('tablets.index');
     }
 
     public function destroy($id)
     {
         $tablet = Tablets::findOrFail($id);
         $tablet->delete();
-        return redirect()->route('tablets.index')->with('success', 'Tablet eliminada exitosamente.');
+        return response()->json(['success' => true]);
+        return redirect()->route('tablets.index');
     }
 }
