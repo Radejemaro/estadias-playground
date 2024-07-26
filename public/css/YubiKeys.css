@@ -76,7 +76,7 @@ div#menu_derecho {
     transition: all 0.3s ease;
 }
 
-#edit-modal {
+div#edit-modal {
     display: none;
     position: fixed;
     top: 50%;
@@ -90,7 +90,7 @@ div#menu_derecho {
     z-index: 1000;
 }
 
-#PinYubikey {
+div#PinYubikey {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +98,7 @@ div#menu_derecho {
     cursor: pointer;
 }
 
-#PIN {
+#PIN_YUBIKEY {
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -113,6 +113,10 @@ div#menu_derecho {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
 }
 
 #toggle-password {

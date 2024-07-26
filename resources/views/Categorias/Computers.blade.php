@@ -46,6 +46,7 @@
         <table id="computers-table">
             <thead>
                 <tr>
+                    <th>Nombre Colega</th>
                     <th>Nombre Dispositivo</th>
                     <th>No.Serie</th>
                     <th>Modelo</th>
@@ -56,6 +57,7 @@
             <tbody>
                 @foreach ($computers as $computer)
                     <tr data-id="{{ $computer->id }}">
+                        <td>{{ $computer->COLEGA}}</td>
                         <td>{{ $computer->NOMBRE_PC }}</td>
                         <td>{{ $computer->No_SERIE }}</td>
                         <td>{{ $computer->MODELO_PC }}</td>

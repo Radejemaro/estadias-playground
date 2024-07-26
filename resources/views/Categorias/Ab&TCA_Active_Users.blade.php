@@ -46,7 +46,7 @@
         <table id="active_users-table">
             <thead>
                 <tr>
-                    <th>ID JUPITER</th>
+                    <th>ID</th>
                     <th>PLATAFORMA</th>
                     <th>NOMBRE</th>
                     <th>CLAVE CORTA</th>
