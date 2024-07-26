@@ -1,17 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Cat_Controller;
 use App\Http\Controllers\TabletController;
-use App\Http\Controllers\YubikeyController;
+use App\Http\Controllers\YubiKeyController; // Corrige el nombre del controlador a YubiKeyController
 use App\Http\Controllers\SwitchesController;
-
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
 use App\Http\Controllers\SearchTabletController;
 use App\Http\Controllers\SearchPrinterController;
-
 
 // Página principal
 Route::get('/', function () {
@@ -39,5 +36,6 @@ Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names
 
 // Tablets CRUD
 Route::resource('tablets', TabletController::class);
-Route::resource('computers', Cat_Controller::class);
-Route::resource('yubikey', YubikeyController::class, ['names' => 'yubikeys']);
+
+// YubiKeys CRUD
+Route::resource('yubikeys', YubiKeyController::class);
