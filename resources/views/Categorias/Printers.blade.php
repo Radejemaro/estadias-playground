@@ -9,6 +9,8 @@
 @section('Contenido')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -166,9 +168,7 @@
         }
 
         function downloadCSVFile(csv_data) {
-            let CSVFile = new Blob([csv_data], {
-                type: "text/csv"
-            });
+            let CSVFile = new Blob([csv_data], { type: "text/csv" });
             let temp_link = document.createElement('a');
             temp_link.download = "Consulta.csv";
             let url = window.URL.createObjectURL(CSVFile);

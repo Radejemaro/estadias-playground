@@ -35,22 +35,22 @@ h2{
     width: 80%;
 }
 
-div#menu_derecho ul{
+#menu_derecho ul{
 	list-style: none;
 	list-style-type: none;
 	list-style-position: outside;
 }
 
-div#menu_derecho li{
+#menu_derecho li{
 	list-style: none;
 	box-shadow: 0 0 0 0 rgb(0, 97, 136);
 }
 
-div#menu_derecho li a:hover{
+#menu_derecho li a:hover{
 	box-shadow: 250px 0 0 0 #62e0ff inset;
 }
 
-div#menu_derecho li a{
+#menu_derecho li a{
 	line-height: 30px;
 	font-size: 16px;
 	cursor:pointer;
@@ -63,12 +63,12 @@ div#menu_derecho li a{
 	transition: all .3s ease;
 }
 
-div#menu_derecho li a span{
+#menu_derecho li a span{
 	float: right;
 	padding-top: 7px;
 }
 
-div#menu_derecho{
+#menu_derecho{
 	width:170px;
 	position:absolute;
 	background: rgb(110, 181, 240);

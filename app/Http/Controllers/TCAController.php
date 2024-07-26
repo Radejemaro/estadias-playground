@@ -3,62 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TCA_users;
 
 class TCAController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $active_users = TCA_users::all();
+        return view('Categorias.Ab&TCA_Active_Users', compact('active_users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ID_JUPITER' => 'required',
+        ]);
+
+        TCA_users::create($request->all());
+        return redirect()->route('ab&tca_active_users.index')->with('success', 'Usuario activo agregado exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $active_user = TCA_users::findOrFail($id);
+        return response()->json($active_user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $active_user = TCA_users::findOrFail($id);
+        $active_user->update($request->all());
+        return redirect()->route('ab&tca_active_users.index')->with('success', 'Usuario activo actualizado exitosamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $active_user = TCA_users::findOrFail($id);
+        $active_user->delete();
+        return response()->json(['success' => true]);
     }
 }
