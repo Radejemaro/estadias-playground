@@ -105,11 +105,11 @@
                 }).data('id', id);
             });
 
-            $(document).click(function () {
+            $(document).click(function() {
                 $('#menu_derecho').hide();
             });
 
-            $('#add').click(function () {
+            $('#add').click(function() {
                 $('#form-modal').show();
                 $('#form').attr('action', "{{ route('tcausers.store') }}");
                 $('#form-method').val('POST');
@@ -117,21 +117,22 @@
                 $('#form')[0].reset();
             });
 
-            $('#edit').click(function () {
+            $('#edit').click(function() {
                 let id = $('#menu_derecho').data('id');
                 if (id) {
-                    $.get("{{ url('tcausers') }}/" + id + "/edit", function (data) {
-                        $('#form-modal').show();
+                    $.get("{{ url('tcausers') }}/" + id + "/edit", function(data) {
                         $('#form').attr('action', "{{ url('tcausers') }}/" + id);
                         $('#form-method').val('PUT');
-                        $('#form-title').text('Editar Usuari');
-                        $.each(data, function (key, value) {
+                        $('#form-title').text('Editar Usuario');
+                        $.each(data, function(key, value) {
                             $('#form-' + key).val(value);
                         });
+                        $('#form-modal').show(); // Move this line here
+                    });
                 }
             });
 
-            $('#delete').click(function () {
+            $('#delete').click(function() {
                 let id = $('#menu_derecho').data('id');
                 if (id) {
                     if (confirm('¿Estás seguro de que deseas eliminar este usuario activo?')) {
@@ -141,7 +142,7 @@
                             data: {
                                 _token: $('meta[name="csrf-token"]').attr('content')
                             },
-                            success: function () {
+                            success: function() {
                                 window.location.reload();
                             }
                         });
