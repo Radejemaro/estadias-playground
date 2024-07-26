@@ -9,77 +9,32 @@
 @section('Contenido')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-    <script src="{{ asset('JS/searchPrint.js') }}" type="module"></script>
-    <script src="{{ asset('JS/global-table-management.js') }}"></script>
-
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
     <div id="menu_derecho">
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
-            <li id="quick-add-button"><a>Fast add</a></li>
+            <li id="add"><a>Agregar</a></li>
         </ul>
     </div>
 
-    <!-- Quick Add Modal -->
-    <div id="quick-add-modal">
-        <h3>Agregar Impresora Rápidamente</h3>
-        <form id="quick-add-form" data-create-url="/printers/create">
-            <label for="quick-add-No_SERIE">No. Serie:</label>
-            <input type="text" id="quick-add-No_SERIE" name="No_SERIE"data-field="No_SERIE"><br>
-
-            <label for="quick-add-IP_USB">IP/USB:</label>
-            <input type="text" id="quick-add-IP_USB" name="IP_USB"data-field="IP_USB"><br>
-
-            <label for="quick-add-MAC_ACTIVA">Mac Activa:</label>
-            <input type="text" id="quick-add-MAC_ACTIVA" name="MAC_ACTIVA"data-field="MAC_ACTIVA"><br>
-
-            <label for="quick-add-TIPO">Tipo:</label>
-            <input type="text" id="quick-add-TIPO" name="TIPO"data-field="TIPO"><br>
-
-            <label for="quick-add-MARCA">Marca:</label>
-            <input type="text" id="quick-add-MARCA" name="MARCA"data-field="MARCA"><br>
-
-            <label for="quick-add-UBICACION">Ubicación:</label>
-            <input type="text" id="quick-add-UBICACION" name="UBICACION"data-field="UBICACION"><br>
-
-            <label for="quick-add-DEPARTAMENTO">Departamento:</label>
-            <input type="text" id="quick-add-DEPARTAMENTO" name="DEPARTAMENTO"data-field="DEPARTAMENTO"><br>
-
-            <button type="submit">Guardar</button>
-            <button type="button" onclick="$('#quick-add-modal').hide();">Cancelar</button>
-        </form>
-    </div>
-
-    <!-- Edit Modal -->
-    <div id="edit-modal">
-        <h3>Editar Impresora</h3>
-        <form id="edit-form" data-update-url="/printers/update/{id}">
-            <label for="edit-No_SERIE">No. Serie:</label>
-            <input type="text" id="edit-No_SERIE" name="No_SERIE" data-field="No_SERIE"><br>
-
-            <label for="edit-IP_USB">IP/USB:</label>
-            <input type="text" id="edit-IP_USB" name="IP_USB" data-field="IP_USB"><br>
-
-            <label for="edit-MAC_ACTIVA">Mac Activa:</label>
-            <input type="text" id="edit-MAC_ACTIVA" name="MAC_ACTIVA" data-field="MAC_ACTIVA"><br>
-
-            <label for="edit-TIPO">Tipo:</label>
-            <input type="text" id="edit-TIPO" name="TIPO" data-field="TIPO"><br>
-
-            <label for="edit-MARCA">Marca:</label>
-            <input type="text" id="edit-MARCA" name="MARCA" data-field="MARCA"><br>
-
-            <label for="edit-UBICACION">Ubicación:</label>
-            <input type="text" id="edit-UBICACION" name="UBICACION" data-field="UBICACION"><br>
-
-            <label for="edit-DEPARTAMENTO">Departamento:</label>
-            <input type="text" id="edit-DEPARTAMENTO" name="DEPARTAMENTO" data-field="DEPARTAMENTO"><br>
-
-            <button type="button" id="save-changes">Guardar Cambios</button>
-            <button type="button" onclick="$('#edit-modal').hide();">Cancelar</button>
+    <div id="form-modal" class="modal-scrollable" style="display: none;">
+        <h3 id="form-title">Agregar Impresora</h3>
+        <input type="text" id="search-add-fields" placeholder="Buscar en formulario">
+        <form id="form" method="POST" action="">
+            @csrf
+            <input type="hidden" id="form-method" name="_method" value="POST">
+            @foreach (['No_SERIE', 'IP_USB', 'IP_HYATT', 'MAC_ACTIVA', 'TIPO', 'MARCA', 'MODELO', 'UBICACION', 'DEPARTAMENTO', 'COMENTARIOS', 'SWITCH', 'IP_SWITCH', 'PUERTO_SW'] as $field)
+                <div class="form-group">
+                    <label for="form-{{ $field }}">{{ ucwords(str_replace('_', ' ', strtolower($field))) }}:</label>
+                    <input type="text" id="form-{{ $field }}" name="{{ $field }}">
+                </div>
+            @endforeach
+            <button type="submit" id="save-button">Guardar</button>
+            <button type="button" onclick="$('#form-modal').hide();">Cancelar</button>
         </form>
     </div>
 
@@ -89,36 +44,112 @@
         <table id="printer-table">
             <thead>
                 <tr>
-                    <th data-field="No_SERIE">No Serie</th>
-                    <th data-field="IP_USB">IP/USB</th>
-                    <th data-field="MAC_ACTIVA">Mac Activa</th>
-                    <th data-field="TIPO">Tipo</th>
-                    <th data-field="MARCA">Marca</th>
-                    <th data-field="UBICACION">Ubicación</th>
-                    <th data-field="DEPARTAMENTO">Departamento</th>
-
+                    <th>No Serie</th>
+                    <th>IP/USB</th>
+                    <th>Mac Activa</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Ubicación</th>
+                    <th>Departamento</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($printers as $printer)
                     <tr data-id="{{ $printer->id }}">
-                        <td data-field="No_SERIE">{{ $printer->No_SERIE }}</td>
-                        <td data-field="IP_USB">{{ $printer->IP_USB }}</td>
-                        <td data-field="MAC_ACTIVA">{{ $printer->MAC_ACTIVA }}</td>
-                        <td data-field="TIPO">{{ $printer->TIPO }}</td>
-                        <td data-field="MARCA">{{ $printer->MARCA }}</td>
-                        <td data-field="UBICACION">{{ $printer->UBICACION }}</td>
-                        <td data-field="DEPARTAMENTO">{{ $printer->DEPARTAMENTO }}</td>
+                        <td>{{ $printer->No_SERIE }}</td>
+                        <td>{{ $printer->IP_USB }}</td>
+                        <td>{{ $printer->MAC_ACTIVA }}</td>
+                        <td>{{ $printer->TIPO }}</td>
+                        <td>{{ $printer->MARCA }}</td>
+                        <td>{{ $printer->UBICACION }}</td>
+                        <td>{{ $printer->DEPARTAMENTO }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table><br>
 
-        <button type="button" onclick="tableToCSV()">Exportar como CSV</button><br>
+        <button type="button" onclick="tableToCSV()">
+            Exportar como CSV
+        </button><br>
     </div>
 
-    {{-- Logica para exportar mi busqueda actual a CSV --}}
-    <script type="text/javascript">
+    <script>
+        $(document).ready(function() {
+
+            // Dynamic search in table
+            $('#mysearch').on('keyup', function() {
+                const value = $(this).val().toLowerCase();
+                $("#printer-table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // Dynamic search in form
+            $('#search-add-fields').on('keyup', function() {
+                const value = $(this).val().toLowerCase();
+                $("#form .form-group").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // Handle right-click menu
+            $('#printer-table tbody tr').contextmenu(function(e) {
+                e.preventDefault();
+                let id = $(this).data('id');
+                $('#menu_derecho').css({
+                    display: 'block',
+                    left: e.pageX,
+                    top: e.pageY
+                }).data('id', id);
+            });
+
+            $(document).click(function() {
+                $('#menu_derecho').hide();
+            });
+
+            $('#add').click(function() {
+                $('#form-modal').show();
+                $('#form').attr('action', "{{ route('printers.store') }}");
+                $('#form-method').val('POST');
+                $('#form-title').text('Agregar Impresora');
+                $('#form')[0].reset();
+            });
+
+            $('#edit').click(function() {
+                let id = $('#menu_derecho').data('id');
+                if (id) {
+                    $.get("{{ url('printers') }}/" + id + "/edit", function(data) {
+                        $('#form-modal').show();
+                        $('#form').attr('action', "{{ url('printers') }}/" + id);
+                        $('#form-method').val('PUT');
+                        $('#form-title').text('Editar Impresora');
+                        $.each(data, function(key, value) {
+                            $('#form-' + key).val(value);
+                        });
+                    });
+                }
+            });
+
+            $('#delete').click(function() {
+                let id = $('#menu_derecho').data('id');
+                if (id) {
+                    if (confirm('¿Estás seguro de que deseas eliminar esta Impresora?')) {
+                        $.ajax({
+                            url: "{{ url('printers') }}/" + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function() {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        // Function to export to CSV
         function tableToCSV() {
             let csv_data = [];
             let rows = document.getElementsByTagName('tr');
@@ -126,7 +157,7 @@
                 let cols = rows[i].querySelectorAll('td,th');
                 let csvrow = [];
                 for (let j = 0; j < cols.length; j++) {
-                    csvrow.push(cols[j].innerHTML);
+                    csvrow.push(cols[j].innerText);
                 }
                 csv_data.push(csvrow.join(","));
             }
@@ -147,17 +178,5 @@
             temp_link.click();
             document.body.removeChild(temp_link);
         }
-
-        $(document).click(function(e) {
-            if (e.button == 0) {
-                $("#menu_derecho").css("display", "none");
-            }
-        });
-
-        $(document).keydown(function(e) {
-            if (e.keyCode == 27) {
-                $("#menu_derecho").css("display", "none");
-            }
-        });
     </script>
 @endsection

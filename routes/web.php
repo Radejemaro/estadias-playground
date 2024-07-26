@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cat_Controller;
 use App\Http\Controllers\TabletController;
-use App\Http\Controllers\YubiKeyController; // Corrige el nombre del controlador a YubiKeyController
+use App\Http\Controllers\YubiKeyController;
+use App\Http\Controllers\PrintersController;
+
 use App\Http\Controllers\SwitchesController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
@@ -39,3 +41,6 @@ Route::resource('tablets', TabletController::class);
 
 // YubiKeys CRUD
 Route::resource('yubikeys', YubiKeyController::class);
+
+// Printers CRUD
+Route::resource('printers', PrintersController::class);
