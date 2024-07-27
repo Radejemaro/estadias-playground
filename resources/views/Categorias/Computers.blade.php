@@ -68,7 +68,7 @@
             </tbody>
         </table><br>
 
-        <button type="button" onclick="tableToCSV()">
+        <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
     </div>

@@ -35,17 +35,10 @@ Route::resource('Categorias/Switches', Cat_Controller::class, ['names' => 'switc
 Route::resource('Categorias/Printers', Cat_Controller::class, ['names' => 'printers']);
 Route::resource('Categorias/Ab&TCA_Active_Users', Cat_Controller::class, ['names' => 'ab&tca_active_users']);
 
-// Computers CRUD
+// CRUD
 Route::resource('computers', ComputersController::class);
-
-// Tablets CRUD
 Route::resource('tablets', TabletController::class);
-
-// YubiKeys CRUD
 Route::resource('yubikeys', YubiKeyController::class);
-
-// Printers CRUD
 Route::resource('printers', PrintersController::class);
-
-// TCA_Users CRUD
 Route::resource('tcausers', TCAController::class);
+Route::resource('switches', SwitchesController::class);

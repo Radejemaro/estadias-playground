@@ -8,6 +8,7 @@ use App\Models\Tablets;
 use App\Models\Yubikeys;
 use App\Models\Printers;
 use App\Models\TCA_users;
+use App\Models\Switches;
 
 class Cat_Controller extends Controller
 {
@@ -74,7 +75,10 @@ class Cat_Controller extends Controller
 
     private function switchesIndex()
     {
-        // Lógica para la vista de switches
+        $switches = Switches::whereNotNull('IP')
+            ->where('IP', '!=', '')
+            ->get();
+        return view('Categorias.Switches', compact('switches'));
     }
 
     private function printersIndex()

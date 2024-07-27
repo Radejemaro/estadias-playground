@@ -15,7 +15,7 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <div id="menu_derecho">
+    <div id="menu_derecho" style="display: none;">
         <ul>
             <li id="delete"><a>Eliminar</a></li>
             <li id="edit"><a>Editar</a></li>
@@ -70,34 +70,34 @@
             </tbody>
         </table><br>
 
-        <button type="button" onclick="tableToCSV()">
+        <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
     </div>
 
     <script>
         $(document).ready(function() {
-
-            // Dynamic search in table
+            // Búsqueda dinámica en la tabla
             $('#mysearch').on('keyup', function() {
                 const value = $(this).val().toLowerCase();
                 $("#printer-table tbody tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });
             });
 
-            // Dynamic search in form
+            // Búsqueda dinámica en el formulario
             $('#search-add-fields').on('keyup', function() {
                 const value = $(this).val().toLowerCase();
                 $("#form .form-group").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });
             });
 
-            // Handle right-click menu
-            $('#printer-table tbody tr').contextmenu(function(e) {
-                e.preventDefault();
+            // Manejo del menú de clic derecho
+            $('#printer-table tbody tr').on('contextmenu', function(e) {
+                e.preventDefault(); // Evitar el menú contextual del navegador
                 let id = $(this).data('id');
+
                 $('#menu_derecho').css({
                     display: 'block',
                     left: e.pageX,
@@ -105,8 +105,16 @@
                 }).data('id', id);
             });
 
-            $(document).click(function() {
-                $('#menu_derecho').hide();
+            // Manejo de clic fuera del menú
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#menu_derecho').length) {
+                    $('#menu_derecho').hide();
+                }
+            });
+
+            // Manejo de clic dentro del menú para evitar que se oculte
+            $('#menu_derecho').on('click', function(e) {
+                e.stopPropagation();
             });
 
             $('#add').click(function() {
@@ -115,6 +123,7 @@
                 $('#form-method').val('POST');
                 $('#form-title').text('Agregar Impresora');
                 $('#form')[0].reset();
+                $('#menu_derecho').hide(); // Ocultar menú al agregar
             });
 
             $('#edit').click(function() {
@@ -128,6 +137,7 @@
                         $.each(data, function(key, value) {
                             $('#form-' + key).val(value);
                         });
+                        $('#menu_derecho').hide(); // Ocultar menú al editar
                     });
                 }
             });
@@ -143,7 +153,11 @@
                                 _token: $('meta[name="csrf-token"]').attr('content')
                             },
                             success: function() {
-                                window.location.reload();
+                                $('#printer-table tbody tr[data-id="' + id + '"]').remove();
+                                $('#menu_derecho').hide(); // Ocultar menú después de eliminar
+                            },
+                            error: function(xhr) {
+                                console.log(xhr.responseText);
                             }
                         });
                     }
