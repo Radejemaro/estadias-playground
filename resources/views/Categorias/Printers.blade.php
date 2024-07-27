@@ -168,15 +168,15 @@
         // Function to export to CSV
         function tableToCSV() {
             let csv_data = [];
-            let rows = document.getElementsByTagName('tr');
-            for (let i = 0; i < rows.length; i++) {
-                let cols = rows[i].querySelectorAll('td,th');
+            let rows = $('#printer-table thead tr, #printer-table tbody tr:visible');
+            rows.each(function() {
+                let cols = $(this).find('td, th');
                 let csvrow = [];
-                for (let j = 0; j < cols.length; j++) {
-                    csvrow.push(cols[j].innerText);
-                }
+                cols.each(function() {
+                    csvrow.push($(this).text());
+                });
                 csv_data.push(csvrow.join(","));
-            }
+            });
             csv_data = csv_data.join('\n');
             downloadCSVFile(csv_data);
         }

@@ -32,12 +32,9 @@
             <div class="left-links">
                 <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('/Imagenes/Logo.png') }}"
                         alt="SEMRC-IT Data Automatization"></a>
-                <a href="#">Inventario</a>
             </div>
             <div class="right-links">
-                <input type="search" placeholder="Search" aria-label="Search" id="GlobalSearch">
-                <button type="submit" id="GlobalSearchButton">Buscar</button>
-                <a href="#">Usuario</a>
+                <a href="">Usuarios</a>
                 <a href="{{ asset('/') }}">Salir</a>
             </div>
         </nav>
