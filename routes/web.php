@@ -8,6 +8,7 @@ use App\Http\Controllers\PrintersController;
 use App\Http\Controllers\ComputersController;
 use App\Http\Controllers\SwitchesController;
 use App\Http\Controllers\TCAController;
+use App\Http\Controllers\UsersController;
 
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SearchYubiController;
@@ -42,3 +43,12 @@ Route::resource('yubikeys', YubiKeyController::class);
 Route::resource('printers', PrintersController::class);
 Route::resource('tcausers', TCAController::class);
 Route::resource('switches', SwitchesController::class);
+Route::resource('users', UsersController::class)->except(['create', 'show', 'destroy']);
+
+// Users Login
+
+Route::get('/login', [UsersController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UsersController::class, 'login']);
+Route::post('/register', [UsersController::class, 'register'])->name('register');
+Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
+
