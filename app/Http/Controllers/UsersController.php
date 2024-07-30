@@ -51,6 +51,12 @@ class UsersController extends Controller
         return view('Categorias/Usuarios', compact('users'));
     }
 
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json($user);
+    }
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -65,11 +71,35 @@ class UsersController extends Controller
         }
 
         $user->name = $request->name;
-        if ($request->password) {
+        if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
 
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');
+        $user->update($request->all());
+
+        return redirect()->route('users.index');
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return response()->json(['success' => true]);
+        return redirect()->route('users.index');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create($request->all());
+        return redirect()->route('users.index');
+    }
+
+
 }

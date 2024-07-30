@@ -73,6 +73,9 @@
         <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
+        <button type="button" id="btn_add">
+            Agregar Impresora
+        </button>
     </div>
 
     <script>
@@ -124,6 +127,14 @@
                 $('#form-title').text('Agregar Impresora');
                 $('#form')[0].reset();
                 $('#menu_derecho').hide(); // Ocultar menú al agregar
+            });
+
+            $('#btn_add').click(function() {
+                $('#form-modal').show();
+                $('#form').attr('action', "{{ route('printers.store') }}");
+                $('#form-method').val('POST');
+                $('#form-title').text('Agregar Impresora');
+                $('#form')[0].reset();
             });
 
             $('#edit').click(function() {

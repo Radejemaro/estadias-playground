@@ -34,7 +34,7 @@
                         alt="SEMRC-IT Data Automatization"></a>
             </div>
             <div class="right-links">
-                <a href="{{asset('users.index')}}">Usuarios</a>
+                <a href="{{url('users')}}">Usuarios</a>
                 <a href="{{ asset('/') }}">Salir</a>
             </div>
         </nav>

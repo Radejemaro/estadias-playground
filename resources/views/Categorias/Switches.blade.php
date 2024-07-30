@@ -78,6 +78,9 @@
         <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
+        <button type="button" id="btn_add">
+            Agregar Switch
+        </button>
     </div>
 
     <script>
@@ -115,6 +118,14 @@
             });
 
             $('#add').click(function () {
+                $('#form-modal').show();
+                $('#form').attr('action', "{{ route('switches.store') }}");
+                $('#form-method').val('POST');
+                $('#form-title').text('Agregar Switch');
+                $('#form')[0].reset();
+            });
+
+            $('#btn_add').click(function() {
                 $('#form-modal').show();
                 $('#form').attr('action', "{{ route('switches.store') }}");
                 $('#form-method').val('POST');

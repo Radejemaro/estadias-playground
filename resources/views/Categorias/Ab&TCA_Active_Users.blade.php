@@ -73,6 +73,9 @@
         <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
+        <button type="button" id="btn_add">
+            Agregar Usuario
+        </button>
     </div>
 
     <script>
@@ -110,6 +113,14 @@
             });
 
             $('#add').click(function() {
+                $('#form-modal').show();
+                $('#form').attr('action', "{{ route('tcausers.store') }}");
+                $('#form-method').val('POST');
+                $('#form-title').text('Agregar Usuario Activo');
+                $('#form')[0].reset();
+            });
+
+            $('#btn_add').click(function() {
                 $('#form-modal').show();
                 $('#form').attr('action', "{{ route('tcausers.store') }}");
                 $('#form-method').val('POST');

@@ -43,7 +43,7 @@ Route::resource('yubikeys', YubiKeyController::class);
 Route::resource('printers', PrintersController::class);
 Route::resource('tcausers', TCAController::class);
 Route::resource('switches', SwitchesController::class);
-Route::resource('users', UsersController::class)->except(['create', 'show', 'destroy']);
+Route::resource('users', UsersController::class);
 
 // Users Login
 
