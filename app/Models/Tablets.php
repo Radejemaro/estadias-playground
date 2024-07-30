@@ -24,6 +24,5 @@ class Tablets extends Model
         'MAC',
         'AREA',
         'COMENTARIOS',
-
     ];
 }

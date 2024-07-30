@@ -16,7 +16,7 @@
   flex: 1 1 calc(10% - 40px); /* Tres botones por fila, ajustando por los márgenes */
   border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 20px 20px 50px silver;
+  box-shadow: 20px 20px 50px rgb(192, 192, 192);
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   text-align: center;

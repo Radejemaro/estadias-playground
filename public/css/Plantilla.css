@@ -21,7 +21,7 @@ header nav {
     justify-content: space-between; /* Para distribuir los elementos a los extremos */
     align-items: center;
     text-align: center; /* Para alinear verticalmente los elementos */
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
     padding: 10px;
     height: 50px;
@@ -154,7 +154,6 @@ tbody td {
 
 /*------ Filas ------*/
 tbody tr:hover > * {
-
     background-color: #89a4ff;
     cursor: pointer;
     color: #ffffff;
@@ -256,7 +255,7 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #FFFFFF;
+    background: #ffffff;
     padding: 30px;
     border: 1px solid #000000;
     width: 40%;
@@ -266,14 +265,14 @@ form {
     overflow-y: auto;
     z-index: 1000;
     border-radius: 12px;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
 #edit-modal h3 {
-        text-align: center;
+    text-align: center;
     margin-top: 0;
-    color: #007BFF;
+    color: #007bff;
     font-size: 24px;
 }
 
@@ -301,8 +300,8 @@ form {
     margin-top: 10px;
     padding: 10px;
     border: none;
-    background-color: #007BFF;
-    color: #FFFFFF;
+    background-color: #007bff;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
@@ -312,13 +311,13 @@ form {
     background-color: #0056b3;
 }
 
-#form-modal {
+.modal-scrollable {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #FFFFFF;
+    background: #ffffff;
     padding: 30px;
     border: 1px solid #000000;
     width: 40%;
@@ -328,29 +327,29 @@ form {
     overflow-y: auto;
     z-index: 1000;
     border-radius: 12px;
-    font-family: 'Roboto', sans-serif;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
-#form-modal h3 {
+.modal-scrollable h3 {
     text-align: center;
     margin-top: 0;
-    color: #007BFF;
+    color: #007bff;
     font-size: 24px;
 }
 
-#form-modal form {
+.modal-scrollable form {
     padding: 10px;
 }
 
-#form-modal label {
+.modal-scrollable label {
     display: block;
     margin-bottom: 10px;
     color: #333333;
     font-size: 16px;
 }
 
-#form-modal input {
+.modal-scrollable input {
     width: 90%;
     padding: 8px;
     margin-bottom: 10px;
@@ -359,17 +358,32 @@ form {
     font-size: 14px;
 }
 
-#form-modal button {
+.modal-scrollable button {
     margin-top: 10px;
     padding: 10px;
     border: none;
-    background-color: #007BFF;
-    color: #FFFFFF;
+    background-color: #007bff;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
 }
 
-#form-modal button:hover {
+.modal-scrollable button:hover {
+    background-color: #0056b3;
+}
+
+#btn_add{
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#btn_add:hover{
     background-color: #0056b3;
 }

@@ -30,14 +30,15 @@
     <header>
         <nav>
             <div class="left-links">
+<<<<<<< HEAD
                 <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('Imagenes/Logo.png') }}"
+=======
+                <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('/Imagenes/Logo.png') }}"
+>>>>>>> 07e00838cd56cfde488a1f1d12ee6d8ebb71e3c0
                         alt="SEMRC-IT Data Automatization"></a>
-                <a href="#">Inventario</a>
             </div>
             <div class="right-links">
-                <input type="search" placeholder="Search" aria-label="Search" id="GlobalSearch">
-                <button type="submit" id="GlobalSearchButton">Buscar</button>
-                <a href="#">Usuario</a>
+                <a href="{{url('users')}}">Usuarios</a>
                 <a href="{{ asset('/') }}">Salir</a>
             </div>
         </nav>

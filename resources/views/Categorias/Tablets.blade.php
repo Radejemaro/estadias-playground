@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://kit.fontawesome.com/92b6cbde7e.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -81,9 +81,12 @@
             </tbody>
         </table><br>
 
-        <button type="button" onclick="tableToCSV()">
+        <button type="button" onclick="tableToCSV()" id="btn_csv">
             Exportar como CSV
         </button><br>
+        <button type="button" id="btn_add">
+            Agregar Tablet
+        </button>
     </div>
 
     <script>
@@ -128,6 +131,14 @@
                 $('#form')[0].reset();
             });
 
+            $('#btn_add').click(function() {
+                $('#form-modal').show();
+                $('#form').attr('action', "{{ route('tablets.store') }}");
+                $('#form-method').val('POST');
+                $('#form-title').text('Agregar Tablet');
+                $('#form')[0].reset();
+            });
+
             $('#edit').click(function () {
                 let id = $('#menu_derecho').data('id');
                 if (id) {
@@ -154,7 +165,7 @@
                                 _token: $('meta[name="csrf-token"]').attr('content')
                             },
                             success: function () {
-                                location.reload();
+                                window.location.reload();
                             }
                         });
                     }
