@@ -30,11 +30,7 @@
     <header>
         <nav>
             <div class="left-links">
-<<<<<<< HEAD
                 <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('Imagenes/Logo.png') }}"
-=======
-                <a href="{{ asset('Index') }}" id="LogoSecrets"><img src="{{ asset('/Imagenes/Logo.png') }}"
->>>>>>> 07e00838cd56cfde488a1f1d12ee6d8ebb71e3c0
                         alt="SEMRC-IT Data Automatization"></a>
             </div>
             <div class="right-links">
