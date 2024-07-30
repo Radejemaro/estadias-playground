@@ -1,3 +1,7 @@
+@php
+use Carbon\Carbon;
+@endphp
+
 @extends('Plantilla')
 
 @section('Titulo', 'Usuarios')
@@ -67,9 +71,7 @@
                                 <i class="fas fa-eye toggle-password"></i>
                             </div>
                         </td>
-                        <td>
-
-                        </td>
+                        <td>{{ $user->last_login_at ? \Carbon\Carbon::parse($user->last_login_at)->diffForHumans() : 'Nunca' }}</td>                        </td>
                     </tr>
                 @endforeach
             </tbody>
